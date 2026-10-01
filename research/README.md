@@ -2,7 +2,11 @@
 
 Save evidence here **before modeling around an external object**. Examples include a board mount, connector enclosure, tool holder, or bracket for purchased hardware. A product name alone does not identify a mechanical interface: record the exact model, board/hardware revision, variant, and fitted accessories.
 
-This directory contains research records, not generated CAD outputs. No Raspberry Pi or other product dimensions have been researched by the starter repository.
+Existing records:
+- [BQ Voyage Station G3](objects/bq-voyage-station-g3/README.md), including official hardware sources, community case comparison, and dimensions recovered from original STL/STEP files.
+- [CooptryPoul pole B0D8BB46Y6](objects/cooptrypoul-b0d8bb46y6/README.md), including seller thread identification, nominal ACME references, and user-approved trial-fit assumptions for its L-bracket adapter.
+
+For custom modular-board holders, start with [MultiBuild / MultiBoard adapter research](objects/multiboard/README.md): board datums, attachment families, source geometry, printing/licensing constraints, and the AirTag, Wio Tracker L1 Pro and T1000E holder precedents.
 
 ## Layout
 

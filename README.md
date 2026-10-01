@@ -33,6 +33,7 @@ First setup requires network access for Python, packages, and the pinned upstrea
 
 - **[Mounting plate](models/mounting_plate/model.py):** 60 × 40 × 5 mm rounded plate with four 4.4 mm holes. Checks dimensions, analytic volume, material at the center, and open hole centers.
 - **[Wi-Fi QR magnet plate](models/wifi_qr/README.md):** parametric 70 × 80 × 5 mm plate, 60 × 60 mm QR pattern with 5 mm top/left/right offsets and no internal quiet border, 1 mm raised code and SSID label, and four rear glue pockets for 10 × 3 mm magnets. Includes a [cleaned-up modeling prompt](models/wifi_qr/prompt.md), public sample credentials, and QR-specific checks. A 15 mm lower band separates the 4.5 mm nominal lettering from the QR. Web, PNG, and USDZ previews show black relief on a light grey body. Verify the physical print with a phone.
+- **[Station G3 open case](models/station_g3_open_case/README.md):** 70.6 × 122.2 × 22.3 mm open-top enclosure with measured mounting supports, two USB-C accesses, DC power, buttons, antenna slot and both Grove openings. Reconstructed from an attributed community case; physical fit remains unverified.
 
 Browse all models in the **[generated catalog](models/README.md)**.
 
@@ -167,11 +168,21 @@ name = "Example enclosure base"
 description = "Base half of an enclosure, with mounting bosses and cable opening."
 units = "mm"
 status = "draft"
+print_tested = false
 tags = ["enclosure", "fdm"]
 research = []
 ```
 
-`status` is a descriptive, author-declared string, not a certification; examples include `draft`, `example`, and `print-tested`. `research` contains repository-relative links to **existing files under `research/`**, such as `research/objects/<object>/README.md` after that record has been created. Keep a description focused on dimensions/interfaces and purpose. Do not put passwords or other secrets in metadata.
+`status` is a descriptive, author-declared string, not a certification; examples include `draft`, `example`, and `unverified-fit`.
+
+`print_tested` is a required TOML boolean, displayed separately in the catalog:
+
+- `false`: no confirmed successful physical print test of the current geometry. Use this for new models and whenever the test history is unknown.
+- `true`: a person has confirmed that the current geometry was physically printed and inspected. Record the printer/material, relevant settings and observations in the model's README.
+
+CAD checks, STEP/STL exports, slicer previews and automated tests never set this flag. Reset it to `false` after geometry changes until the revised model is physically tested. A print test alone does not establish hardware fit, strength or thermal suitability; record those results separately. After changing metadata, run `uv run python scripts/index.py`; no geometry rebuild is needed.
+
+`research` contains repository-relative links to **existing files under `research/`**, such as `research/objects/<object>/README.md` after that record has been created. Keep a description focused on dimensions/interfaces and purpose. Do not put passwords or other secrets in metadata.
 
 The catalog scans nested `model.toml` files, checks for a sibling `model.py`, checks that every `model.py` has metadata, validates research links, and renders stable Markdown. It **does not import or execute models**. It refreshes after successful builds; for metadata-only changes or model removal/renaming, run `scripts/index.py`. Commit the generated `models/README.md` with source and metadata. `--check` detects a stale catalog without rewriting it.
 
@@ -221,7 +232,7 @@ The snapshot is an ignored local reference cache, not another installed build123
 
 ## Repository maintenance
 
-Commit model source/metadata, prompts, original research, permitted input assets, skill references, scripts, tests, reference manifests, and `uv.lock`. Generated `outputs/`, downloaded `vendor/` subdirectories, scratch `tmp/`, Python caches, and `.venv/` are ignored. See [initialization and sharing policy](docs/initialization.md) for clean checkouts and planned publishing.
+Commit model source/metadata, prompts, original research, permitted input assets, skill references, scripts, tests, reference manifests, and `uv.lock`. Generated `outputs/`, downloaded `vendor/` subdirectories, scratch `tmp/`, Python caches, and `.venv/` are ignored. See [initialization and sharing policy](docs/initialization.md) for clean checkouts and unimplemented publishing proposals.
 
 Keep Python constrained to 3.14.x unless deliberately changing the compatibility target. For a dependency upgrade, update pins and lock together, review the release-specific skill notes, rerun the suite and both example builds, and inspect the saved exports/previews. Preserve upstream licenses for any later copied source or assets. Detailed provenance and offline-maintenance rules live in the source review.
 

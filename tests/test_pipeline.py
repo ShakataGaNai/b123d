@@ -83,6 +83,7 @@ class WorkspaceTests(unittest.TestCase):
             'description = "Bracket for measured hardware"\n'
             'units = "mm"\n'
             'status = "draft"\n'
+            'print_tested = false\n'
             'tags = ["fixture", "mount"]\n'
             f'research = ["{reference}"]\n'
         )
@@ -96,6 +97,17 @@ class WorkspaceTests(unittest.TestCase):
         text = catalog(self.root)
         self.assertIn("(fixture/left%20bracket/model.py)", text)
         self.assertIn("(../research/objects/test%20fixture/README.md)", text)
+
+    def test_print_tested_requires_an_explicit_boolean(self) -> None:
+        folder = self.model("fixture/print-status", "")
+        metadata = folder / "model.toml"
+        original = metadata.read_text()
+        for value in (None, '"false"', '"true"', "0", "1", "[]"):
+            with self.subTest(value=value):
+                field = "" if value is None else f"print_tested = {value}\n"
+                metadata.write_text(original.replace("print_tested = false\n", field))
+                with self.assertRaisesRegex(ValueError, "print_tested must be a boolean"):
+                    discover(self.root)
 
     def test_source_without_metadata_fails_discovery(self) -> None:
         folder = self.model("fixture/missing", "raise RuntimeError('must not execute')\n")

@@ -2,6 +2,7 @@ name = "Wi-Fi QR magnet plaque"
 description = "Parametric 70 × 80 × 5 mm plaque with a raised Wi-Fi QR, SSID label, and four rear blind pockets for 10 × 3 mm magnets."
 units = "mm"
 status = "example"
+print_tested = false
 tags = ["wifi", "qr", "magnet", "plaque", "fdm", "parametric"]
 research = []
 

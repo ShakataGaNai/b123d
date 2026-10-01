@@ -4,11 +4,14 @@
 
 Regenerated after successful builds, or with `uv run python scripts/index.py`.
 Paths identify models; nested folders group related parts. Status is author-declared, not certification.
+Print tested records a confirmed physical print of the current geometry, not fit or safety certification.
 
-| Model | Path / project | Description | Status | Tags | Research |
-| --- | --- | --- | --- | --- | --- |
-| [Mounting plate](mounting_plate/model.py) | mounting_plate | Rounded 60 × 40 × 5 mm plate with four 4.4 mm holes on a 44 × 24 mm grid. | example | plate, mounting, fdm | — |
-| [Wi-Fi QR magnet plaque](wifi_qr/model.py) | wifi_qr | Parametric 70 × 80 × 5 mm plaque with a raised Wi-Fi QR, SSID label, and four rear blind pockets for 10 × 3 mm magnets. | example | wifi, qr, magnet, plaque, fdm, parametric | — |
+| Model | Path / project | Description | Status | Print tested | Tags | Research |
+| --- | --- | --- | --- | --- | --- | --- |
+| [Mounting plate](mounting_plate/model.py) | mounting_plate | Rounded 60 × 40 × 5 mm plate with four 4.4 mm holes on a 44 × 24 mm grid. | example | No | plate, mounting, fdm | — |
+| [CooptryPoul pole L-bracket adapter](pole_l_bracket/model.py) | pole_l_bracket | Trial-fit ¾″–5 ACME female socket with an offset plain 20 × 50 × 2 mm panel; 5 mm gap to an assumed 40 mm collar. | trial-fit; hardware dimensions unverified | No | bracket, extension-pole, acme, fdm, parametric | [cooptrypoul-b0d8bb46y6](../research/objects/cooptrypoul-b0d8bb46y6/README.md) |
+| [Station G3 full-height open case](station_g3_open_case/model.py) | station_g3_open_case | Open-top 70.6 × 122.2 × 22.3 mm Station G3 case with measured mounting supports and USB-C, DC, button, antenna, and Grove access. Physical fit unverified. | unverified-fit | No | station-g3, enclosure, meshtastic, meshcore, fdm, parametric | [bq-voyage-station-g3](../research/objects/bq-voyage-station-g3/README.md) |
+| [Wi-Fi QR magnet plaque](wifi_qr/model.py) | wifi_qr | Parametric 70 × 80 × 5 mm plaque with a raised Wi-Fi QR, SSID label, and four rear blind pockets for 10 × 3 mm magnets. | example | No | wifi, qr, magnet, plaque, fdm, parametric | — |
 
 For `models/<path>/`, build artifacts go to `outputs/<path>/` (ignored by Git).
 `preview.html` is an offline rotatable viewer; `preview.png` contains four fixed views.

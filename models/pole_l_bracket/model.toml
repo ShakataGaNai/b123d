@@ -1,0 +1,7 @@
+name = "CooptryPoul pole L-bracket adapter"
+description = "Trial-fit ¾″–5 ACME female socket with an offset plain 20 × 50 × 2 mm panel; 5 mm gap to an assumed 40 mm collar."
+units = "mm"
+status = "trial-fit; hardware dimensions unverified"
+print_tested = false
+tags = ["bracket", "extension-pole", "acme", "fdm", "parametric"]
+research = ["research/objects/cooptrypoul-b0d8bb46y6/README.md"]

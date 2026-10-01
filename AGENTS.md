@@ -31,6 +31,9 @@ Routine library questions and model builds require no web research.
   hardware revisions, uncertainties, and downloaded-asset provenance. Link the
   notes in the model's `model.toml` `research` array. A nominal product name is
   not evidence for its mounting geometry.
+- For measurements or reconstruction from existing STL files, read
+  [the STL measurement skill](.agents/skills/stl-measurement/SKILL.md) for its
+  runnable section helper, coordinate registration and evidence-to-CAD handoff.
 - Keep reusable geometry helpers beside the model or in its project folder;
   reserve `model.py` for model entrypoints. Model IDs are their relative folder
   paths. Put inputs beside source, not under `outputs/`. Resolve file inputs

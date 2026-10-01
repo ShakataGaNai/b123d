@@ -1,0 +1,10 @@
+name = "Station G3 full-height open case"
+description = "Open-top 70.6 × 122.2 × 22.3 mm Station G3 case with measured mounting supports and USB-C, DC, button, antenna, and Grove access. Physical fit unverified."
+units = "mm"
+status = "unverified-fit"
+print_tested = false
+tags = ["station-g3", "enclosure", "meshtastic", "meshcore", "fdm", "parametric"]
+research = ["research/objects/bq-voyage-station-g3/README.md"]
+
+[preview]
+base_color = "#b9cbd2"

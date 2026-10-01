@@ -26,6 +26,7 @@ Use this skill for Python-authored boundary-representation CAD in this repositor
 | Extrude, revolve, loft, sweep, boolean, fillet, chamfer, or shell | [Feature operations](references/operations.md) |
 | Size holes, counterbores, countersinks, thread interfaces, fasteners, or print allowances | [Hardware and manufacturing](references/hardware-and-manufacturing.md) |
 | Model around a real object or reuse dimensions/assets | [Object research contract](../../../research/README.md) before geometry |
+| Recover dimensions/feature depths from STL, register exported parts, or reconstruct mesh-derived CAD | [STL measurement skill](../stl-measurement/SKILL.md) before choosing parametric features |
 | Add reproducible text or a scannable QR marking | [Wi-Fi QR example](../../../models/wifi_qr/README.md): explicit `font_path` and quiet zone/contrast; use the research contract above for actual reused hardware |
 | Position separate components, preserve a BOM-like tree, measure interference/clearance | [Assemblies](references/assemblies.md) |
 | Validate geometry, investigate a failure, distinguish CAD validity from print readiness | [Verification and troubleshooting](references/verification.md) |

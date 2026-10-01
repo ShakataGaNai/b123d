@@ -2,6 +2,7 @@ name = "Mounting plate"
 description = "Rounded 60 × 40 × 5 mm plate with four 4.4 mm holes on a 44 × 24 mm grid."
 units = "mm"
 status = "example"
+print_tested = false
 tags = ["plate", "mounting", "fdm"]
 # Repository-relative research notes; populate before modeling around real hardware.
 research = []
