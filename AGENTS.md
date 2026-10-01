@@ -76,6 +76,34 @@ scratch work in the ignored locations. Commit `uv.lock`; refresh it only as an
 intentional dependency change. Model code runs with normal user privileges;
 this workspace is not a sandbox.
 
+## Commit scope in a shared workspace
+
+Treat the working tree and Git index as shared with the user and other agents.
+For a limited-scope task, commit only changes required by that task, including
+work delegated for it. A request to "commit" does not authorize collecting other
+tasks' changes; repository-wide inclusion requires explicit user authorization.
+
+1. Before editing, inspect `git status --short`, `git diff`, and
+   `git diff --cached` to establish pre-existing changes. Track the files/hunks
+   you change for this task; a dirty file is not evidence of ownership.
+2. Stage explicit paths only when their entire diff belongs to the task. For
+   shared files, stage only owned hunks with `git add -p` or a reviewed patch.
+   Avoid bulk staging (`git add .`, `git add -A`) and `git commit -a` for scoped
+   work. Generated files such as `models/README.md` can contain other agents'
+   changes too; generating a file does not make its entire diff yours.
+3. Coordinate staging and commits with agents using the same checkout: the
+   index is shared, not private to a session. If unrelated changes are already
+   staged, pause the commit and coordinate with their owner; do not unstage,
+   stash, reset, discard or overwrite someone else's work to isolate your own.
+   Use separate worktrees when concurrent work cannot be isolated safely.
+4. Immediately before committing, inspect the **entire** staged diff and its
+   file list (`git diff --cached`, `git diff --cached --name-only`). Every staged
+   hunk must belong to the authorized scope. If ownership is ambiguous, edits
+   overlap, or the index changes during review, resolve that before committing.
+5. Leave unrelated changes untouched and report the scope committed. If another
+   agent already committed your changes, do not amend or rewrite their commit
+   without explicit authorization.
+
 ## Agent skills
 
 ### Issue tracker
