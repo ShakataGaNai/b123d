@@ -1,0 +1,15 @@
+{
+  "package": "@google/model-viewer",
+  "version": "4.1.0",
+  "source": "https://registry.npmjs.org/@google/model-viewer/-/model-viewer-4.1.0.tgz",
+  "upstream_commit": "a594fb9ed482ab56ad267648175c4ebe4af7387e",
+  "archive_sha256": "0aba94e005c03143fb04d208ec82097030b3db1932cd0d885645667363e7f328",
+  "npm_integrity": "sha512-7WB/jS6wfBfRl/tWhsUUvDMKFE1KlKME97coDLlZQfvJD0nCwjhES1lJ+k7wnmf7T3zMvCfn9mIjM/mgZapuig==",
+  "license": "Apache-2.0; bundled third-party notices are retained in the JavaScript distribution",
+  "files": {
+    "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "dist/model-viewer.min.js": "8367184a607fbe07a78b650c0d359e5ebbd96f7e2b22f95f761f559b63430386",
+    "package.json": "8cd24894f52a1a021a12f8c6f4dc6b6d566cdccc69e9cbb3ce74754972679255"
+  },
+  "offline_scope": "The three build123d 0.13.0 documentation GLBs contain no external URIs or compression extensions. The bundled viewer is self-contained for these examples. Its optional Draco, Basis and Lottie decoder integrations reference upstream CDNs, but these formats are not used by this documentation. Source maps are not runtime dependencies and are not included."
+}

@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+outputs/
+tmp/
+.pytest_cache/
+
+# Downloaded reference trees; root-level manifests and README remain in Git.
+/vendor/*/
