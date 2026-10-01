@@ -124,7 +124,7 @@ Ready for attachment-family selection, object intake and evidence-led adapter pl
 
 The detailed records preserve missing dimensions and source-access limitations. Do not fill those gaps from memory or imply that researching the ecosystem makes an arbitrary future object dimensionally specified.
 
-Missing exact mating geometry and the example asset-license-version prerequisite are recorded in [b123d #10](https://github.com/ShakataGaNai/b123d/issues/10), closed as not planned at the owner's request on 2026-10-01. Closure does not resolve these evidence gaps. Official STEP listings identify a route to source geometry, but the observed download flow requires authenticated access. Until an exact mate is acquired or an identified assembly is measured, this reference supports planning rather than guaranteed-compatible connector CAD.
+Missing exact mating geometry and the example asset-license-version prerequisite are tracked in open [b123d #10](https://github.com/ShakataGaNai/b123d/issues/10). Official STEP listings identify a route to source geometry, but the observed download flow requires authenticated access. Until an exact mate is acquired or an identified assembly is measured, this reference supports planning rather than guaranteed-compatible connector CAD.
 
 ## Research verification performed
 

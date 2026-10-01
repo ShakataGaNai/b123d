@@ -21,9 +21,9 @@ GitHub Issues is the durable shared work queue. Personal task lists and global a
 
 If issue creation fails, inspect authentication and repository access, then retry only after resolving the cause. If still blocked, report the exact blocker and preserve the proposed issue text for handoff; do not silently substitute another tracker or claim an issue exists.
 
-## Unimplemented publishing proposals
+## Planned publishing
 
 - [#1 — GitHub Releases for versioned model downloads](https://github.com/ShakataGaNai/b123d/issues/1)
 - [#2 — GitHub Pages model preview gallery](https://github.com/ShakataGaNai/b123d/issues/2)
 
-Issues #1 and #2 were closed as not planned at the owner's request on 2026-10-01; neither service was implemented. The proposed gallery concerned this repository's models, not the optional upstream build123d documentation site.
+These are open follow-ups, not implemented services. The gallery is for this repository's models, not the optional upstream build123d documentation site.

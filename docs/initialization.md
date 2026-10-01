@@ -53,7 +53,7 @@ Use a **GitHub Release** when you want downloadable exports alongside their exac
 
 The report records library versions, build time, and geometry checks; it does **not** currently record Git revision. Filename/tag plus release notes provide that association. A Git SHA identifies source, not proof of a successful build or byte-identical CAD exports across platforms.
 
-**Publishing proposals, not implemented services:** [#1 — GitHub Releases downloads](https://github.com/ShakataGaNai/b123d/issues/1) and [#2 — GitHub Pages model preview gallery](https://github.com/ShakataGaNai/b123d/issues/2) were closed as not planned at the owner's request on 2026-10-01. No publishing service is configured. Generated artifacts remain outside the source branch. A future Pages gallery would show model previews, not the optional upstream library documentation site; use the [issue workflow](agents/issue-tracker.md) if this work is requested again.
+**Planned publishing lives in GitHub Issues:** [#1 — GitHub Releases downloads](https://github.com/ShakataGaNai/b123d/issues/1) and [#2 — GitHub Pages model preview gallery](https://github.com/ShakataGaNai/b123d/issues/2). Implementation and the choice of manual publishing versus CI are deferred to those issues. Generated artifacts should remain outside the source branch. Pages will be a gallery of model previews, not the optional upstream library documentation site. No publishing service is configured yet; use the [issue workflow](agents/issue-tracker.md) for all additional engineering work.
 
 ## Optional human-readable library site
 
