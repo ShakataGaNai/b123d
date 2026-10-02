@@ -4,7 +4,7 @@ Research date: 2026-10-01. Publisher: MULTIBOARD LTD / Keep Making. Work record:
 
 Purpose: design an object-specific holder with a documented MultiBoard attachment, using this repository's build123d workflow. This record covers the connection system and the three supplied holder examples. It does not promise a dimensioned specification for every vendor part, a physical fit, or an adapter for an unidentified hardware revision.
 
-**Confirmed adapter requirement:** support both **preprinted rails** and **octagon mounting**. The requester identified their AirTag holder as the precedent on 2026-10-01; this is user-confirmed functional evidence, not a newly measured mating profile. Record both routes in each future holder's design contract rather than defaulting to rails alone or to a generic friction-fit insert. Whether one body accommodates both or uses route-specific backs depends on the object's geometry and installation path.
+**Confirmed adapter requirement:** support both **preprinted rails** and **octagonal inserts into snaps**, using the author's AirTag holder as the precedent. The author confirms the snap receiver and selects **13.5 mm across flats × 6.5 mm projection** as the reference peg geometry, matching the [source-mesh measurements](measured-connectors.md). The 13.5 mm dimension is width, not insertion depth. Retain both mounting routes; use route-specific backs where the object's geometry or installation path requires them.
 
 ## Read this first
 
@@ -12,6 +12,8 @@ Purpose: design an object-specific holder with a documented MultiBoard attachmen
 2. [Attachment interfaces](attachment-interfaces.md): mating chains, snaps/inserts, threads, Peg Click, Fix-Points/rails, geometry gaps and selection guidance.
 3. [Ecosystem, printing and licensing](ecosystem-printing-license.md): terminology, official resources, print settings, strength limitations and redistribution terms.
 4. [Existing holder examples](existing-holder-examples.md): AirTag, Seeed Wio Tracker L1 Pro and Seeed T1000E; listing evidence, files and any measured geometry.
+5. [Measured connectors](measured-connectors.md): recovered AirTag octagon, supplied folded rail provenance, coordinate transforms and remaining assembly/fit checks.
+6. [Community-published specifications](community-specifications.md): independently inspected 13.45 mm snap-insert peg, dimensioned tile drawing, parametric holes/threads and rail cutting profiles, with source revisions and limits.
 
 Use a cited dimension or identified source file for a mating profile. A grid pitch, bounding box, photograph or part name cannot specify snap teeth, thread form, insertion clearance or a locking feature. Keep source dimensions separate from print-fit allowances.
 
@@ -71,7 +73,7 @@ All three originals were retrieved as 3MF through Printables' public API despite
 |---|---|---|---|
 | AirTag | 35.0 × 36.5 × 13.5 | Small repeated cradle; user-confirmed rail/octagon mounting precedent | Exact mate/profile revision and feature registration remain to be documented |
 | Wio Tracker L1 Pro | 60.0 × 32.0 × 45.0 | Carrier for the case it ships with; separate rear Rail | Rail file/revision absent from holder download |
-| Seeed T1000E | 62.0 × 19.5 × 24.0 | Card-like pocket; listing mentions a snap | Meaning and mating geometry of that snap remain unidentified |
+| Seeed T1000E | 62.0 × 19.5 × 24.0 | Card-like pocket; author's confirmed snap-insert route | Exact source profile, snap variant and feature registration remain to be documented |
 
 These are holder bounds in the original mesh frames, not hardware envelopes or fit allowances. The practical precedent is to design the object retainer and the named board attachment separately. No official tile/mate assembly or physical fit was checked.
 
@@ -124,6 +126,8 @@ Ready for attachment-family selection, object intake and evidence-led adapter pl
 
 The detailed records preserve missing dimensions and source-access limitations. Do not fill those gaps from memory or imply that researching the ecosystem makes an arbitrary future object dimensionally specified.
 
+Expanded community research recovered a 13.45 mm across-flats male peg and revision-scoped tile, thread and slot parameters. See [the community evidence](community-specifications.md). The author confirms that the octagonal pegs insert into snaps and selects **6.5 mm projection** for future holders following their precedent. The community peg's 11 mm length remains evidence of that separate design, not our target.
+
 Missing exact mating geometry and the example asset-license-version prerequisite are tracked in open [b123d #10](https://github.com/ShakataGaNai/b123d/issues/10). Official STEP listings identify a route to source geometry, but the observed download flow requires authenticated access. Until an exact mate is acquired or an identified assembly is measured, this reference supports planning rather than guaranteed-compatible connector CAD.
 
 ## Research verification performed
@@ -134,10 +138,13 @@ Missing exact mating geometry and the example asset-license-version prerequisite
 - Ran the section CLI on T1000E at source `Z = 5 mm`; confirmed the recorded `56 × 7 mm` interior-contour spans. This does not identify a mating profile or a tracker tolerance.
 - Ran the local documentation-link smoke check under locked Python 3.14.7: all 12 relative links resolved across the research catalog and five MultiBoard records. No new CAD model, export, physical fit or load test was performed.
 
+- Community follow-up: inspected pinned source geometry and Boolean callers, checked the creator drawing and archived caveat, and read the live BambuLab discussion in Chromium. Locked Python 3.14.7 handoff smoke resolved 34 relative links across 12 research files and independently checked the 13.45/13.5 mm octagon arithmetic. No downloaded CAD was executed or physical fit tested.
+
 ## Model linkage and maintenance
 
-Future consuming models should link `research/objects/multiboard/README.md` plus their object-specific record in `model.toml`. No consuming adapter model exists yet. Revisit the chosen interface when upstream geometry, board variant, hardware revision or print process changes; update affected geometry and checks together.
+The [MeshTracker X1 holder](../../../models/meshtracker_x1_multiboard_holder/README.md) consumes the measured snap-peg precedent through the [registered reusable module](../../../models/MODULES.md#multiboard-peg-and-rail-cutout); physical fit remains unverified. Consuming models should link the relevant Multiboard research and their object-specific record in `model.toml`. Revisit the chosen interface when upstream geometry, board variant, hardware revision or print process changes; update affected geometry and checks together.
 
 | Date | Change | Verification |
 |---|---|---|
 | 2026-10-01 | Created coordinated board/interface/printing/license/example research and adapter intake contract | Primary pages reviewed; final link and evidence checks recorded in issue #8 |
+| 2026-10-01 | Added four Terra community-research records and an independently checked specification handoff | Pinned source constructors and Boolean callers inspected; creator drawing and archived author caveat checked; issue #10 retains fit/revision gaps |

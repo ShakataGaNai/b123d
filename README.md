@@ -1,6 +1,6 @@
 # AI-assisted build123d workspace
 
-Parametric Python CAD with a local modeling skill, reusable object research, a generated model catalog, validated STEP/STL exports, and offline previews.
+Parametric Python CAD with a local modeling skill, reusable object research, a generated model catalog, validated STL/3MF exports, optional STEP, and offline previews.
 
 Upstream repository: [ShakataGaNai/b123d](https://github.com/ShakataGaNai/b123d).
 Engineering work lives in [GitHub Issues](https://github.com/ShakataGaNai/b123d/issues);
@@ -43,15 +43,21 @@ For `models/<path>/`, the build writes to `outputs/<path>/`:
 
 | File | Purpose |
 | --- | --- |
-| `<folder-name>.step` | Exact CAD interchange with millimeter units; retain alongside source. |
+| `<folder-name>.step` | Optional exact CAD interchange with millimeter units; generated only with `--step`. |
 | `<folder-name>.stl` | Binary triangle mesh for slicers; STL has no reliable unit declaration, so import as millimeters. |
+| `<folder-name>.3mf` | Geometry-only mesh with explicit millimeter units, derived from the validated saved STL. |
 | `preview.png` | Headless orthographic isometric, top, bottom, and front views; model preview colors when configured, otherwise diagnostic depth tint. |
 | `preview.html` | Offline orbit/zoom viewer of that same mesh, with coordinate hover and configured preview colors. |
-| `report.json` | Versions, build timestamp, BREP/STEP dimensions and volume, solid count, design-check status, and mesh observations. |
+| `report.json` | Versions, build timestamp, native dimensions and volume, solid count, design-check status, mesh observations, and optional STEP round-trip results. |
 
-STEP is useful for editing and for slicers that accept it. STL is the broadly compatible print interchange format. **Neither is printer instructions:** choose orientation, material, nozzle, layers, supports, and other machine settings in a slicer, inspect its layer preview, and generate the printer's supported job format there.
+STL and 3MF are the default print interchange formats; STEP is optional for CAD editing. The 3MF contains geometry only: no slicer settings, material assignments, or assembly tree; multipart geometry is a combined mesh. **None is printer instructions:** choose orientation, material, nozzle, layers, supports, and other machine settings in a slicer, inspect its layer preview, and generate the printer's supported job format there.
+
+A successful build without `--step` removes any old same-stem `.step` file. Failed validation leaves previous artifacts, report, and catalog in place; check timestamps before treating outputs as current. After all checks pass, artifacts are published per file, not as an atomic directory replacement.
 
 ```sh
+# Include exact CAD exchange and STEP round-trip checks.
+uv run python scripts/build.py models/mounting_plate --step
+
 # Change tessellation settings: absolute linear deflection (mm), angular (radians).
 uv run python scripts/build.py models/mounting_plate \
   --linear-deflection 0.03 --angular-deflection 0.08
@@ -93,7 +99,7 @@ uv run python scripts/preview.py outputs/wifi_qr/wifi_qr.stl \
   --base-color '#d3d3d3' --relief-color '#000000' --relief-z 5
 ```
 
-STL carries no material colors. These settings are viewer appearance, not filament assignments, and do not change geometry or STEP/STL content. The separate USDZ command below uses its own fixed light-grey/black palette.
+STL carries no material colors. These settings are viewer appearance, not filament assignments, and do not change geometry or STL/3MF/STEP content. The separate USDZ command below uses its own fixed light-grey/black palette.
 
 ### Apple-native USDZ preview
 
@@ -106,16 +112,19 @@ open outputs/wifi_qr/wifi_qr.usdz
 
 Alternatively, select the USDZ in Finder and press Space for Quick Look. This is a separate conversion command, not an automatic output of `build.py`. Regenerate it after changing the model. `--output` chooses a different destination; omit `--relief-z` for a single-color model.
 
-The exporter converts millimeters to meters and rotates CAD +Z up to USD +Y up without mirroring. For this sample, `--relief-z 5` colors the raised QR/text dark and leaves the base light; these are preview materials, not slicer material assignments. Native tools check Apple/RealityKit compliance and reload the package before publication. USDZ is a viewing artifact; retain STEP and STL for CAD and printing.
+The exporter converts millimeters to meters and rotates CAD +Z up to USD +Y up without mirroring. For this sample, `--relief-z 5` colors the raised QR/text dark and leaves the base light; these are preview materials, not slicer material assignments. Native tools check Apple/RealityKit compliance and reload the package before publication. USDZ is a viewing artifact; retain source and STL/3MF for CAD regeneration and printing, and request STEP with `--step` for CAD exchange.
 
 ### What the build verifies
 
 1. `build()` returns only solids: no null/invalid shapes, accidental disconnected parts, or loose surfaces/edges.
 2. Every solid has positive finite volume; the count matches the requested value.
 3. The optional model `check(shape)` succeeds on native geometry.
-4. The saved STEP reimports as valid solids with matching bounds and volume; `check` also runs on that imported geometry. Round-trip thresholds are 0.00001 mm absolute for bounds (plus tiny relative allowance) and 0.000001 relative/absolute for volume.
+4. With `--step` only, the saved STEP reimports as valid solids with matching bounds and volume; `check` also runs on that imported geometry. Round-trip thresholds are 0.00001 mm absolute for bounds (plus tiny relative allowance) and 0.000001 relative/absolute for volume.
 5. The saved STL is watertight, consistently wound, positive-volume, and has the expected connected-body count. The report records its difference from CAD volume; it does not claim a measured maximum tessellation error.
-6. Both previews render successfully before the generated files are published. Successful builds regenerate the model catalog.
+6. The 3MF is generated from that saved STL without retessellation, read back with lib3mf's strict reader, and round-tripped to STL to check body count, orientation, triangle count, volume, and bounds.
+7. Both previews render from the saved STL before the generated files are published. Successful builds regenerate the model catalog.
+
+`report.json` lists `formats` as `["stl", "3mf"]`, adding `"step"` only when requested, and records `mesh_3mf` as `{"units": "mm", "round_trip": "passed"}`. Without STEP, `step_round_trip` is `null` and a supplied design check is `"passed on native"`; with STEP it is `"passed on native and STEP"`. A missing model check is always `"not provided"`.
 
 The exporter explicitly selects **absolute OCCT meshing**, clears cached triangulation, and writes binary STL. This matters because upstream build123d 0.13.0's `export_stl(tolerance=...)` selects relative deflection. Our `--linear-deflection 0.05` is an absolute millimeter meshing setting, not a guarantee of printer accuracy. See [source evidence](docs/source-review.md#5-gumyrbuild123d).
 
@@ -128,6 +137,7 @@ Build errors retain previous outputs; an old artifact is not evidence of a new s
 ```text
 models/
   README.md                    # generated catalog
+  MODULES.md                   # hand-maintained reusable geometry registry
   mounting_plate/
     model.py                   # geometry factory and design checks
     model.toml                 # catalog metadata
@@ -139,6 +149,10 @@ models/
 ```
 
 Larger projects use a shared parent, for example `models/pi_mount/base/`, `models/pi_mount/lid/`, and `models/pi_mount/assembly/`, each with its own `model.py` and `model.toml`. The path below `models/` is the model ID; `base` in two projects does not collide in outputs. Shared helpers can live at the project level. Name helpers something other than `model.py`; that filename is reserved for cataloged entrypoints. Add a project README for assembly decisions when needed.
+
+Reusable geometry helpers are indexed in **[models/MODULES.md](models/MODULES.md)**,
+including their imports, parameters, coordinate frames, examples and fit limits.
+Check it before implementing features; update it when adding or changing helpers.
 
 ### Add a model
 
@@ -159,7 +173,7 @@ def build() -> Part:
 
 Geometry belongs inside `build()` and its helpers. Keep imports free of geometry generation, downloads, exporting, or viewer startup. Build123d dimensions follow this repository's millimeter convention; most modeling angles are degrees. Resolve external file paths relative to `Path(__file__)`, not the caller's working directory. Explicit parameters and a useful datum make models maintainable.
 
-Add `check(shape)` for dimensions and topology the design actually requires. Raise `ValueError` or an assertion on mismatch; a missing check is explicitly reported as **not provided**, not passed. Checks must work for both the native result and reimported STEP: use geometric selections, not unstable face indices or Python class identity. See the [skill's verification reference](.agents/skills/build123d/references/verification.md).
+Add `check(shape)` for dimensions and topology the design actually requires. Raise `ValueError` or an assertion on mismatch; a missing check is explicitly reported as **not provided**, not passed. Checks run on the native result and, with `--step`, on reimported STEP: support both using geometric selections, not unstable face indices or Python class identity. See the [skill's verification reference](.agents/skills/build123d/references/verification.md).
 
 Each sidecar has these required fields:
 
@@ -180,7 +194,7 @@ research = []
 - `false`: no confirmed successful physical print test of the current geometry. Use this for new models and whenever the test history is unknown.
 - `true`: a person has confirmed that the current geometry was physically printed and inspected. Record the printer/material, relevant settings and observations in the model's README.
 
-CAD checks, STEP/STL exports, slicer previews and automated tests never set this flag. Reset it to `false` after geometry changes until the revised model is physically tested. A print test alone does not establish hardware fit, strength or thermal suitability; record those results separately. After changing metadata, run `uv run python scripts/index.py`; no geometry rebuild is needed.
+CAD checks, STL/3MF/STEP exports, slicer previews and automated tests never set this flag. Reset it to `false` after geometry changes until the revised model is physically tested. A print test alone does not establish hardware fit, strength or thermal suitability; record those results separately. After changing metadata, run `uv run python scripts/index.py`; no geometry rebuild is needed.
 
 `research` contains repository-relative links to **existing files under `research/`**, such as `research/objects/<object>/README.md` after that record has been created. Keep a description focused on dimensions/interfaces and purpose. Do not put passwords or other secrets in metadata.
 

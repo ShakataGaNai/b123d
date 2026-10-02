@@ -1,0 +1,7 @@
+name = "MeshTracker X1 Multiboard pocket"
+description = "25 mm-tall filleted X1 pocket with measured angled base, 57.8 × 8.8 mm top slot, and bottom-aligned registered 13.5 mm AF × 6.5 mm Multiboard snap peg; physical fit unverified."
+units = "mm"
+status = "unverified-fit"
+print_tested = false
+tags = ["meshtracker-x1", "meshtastic", "multiboard", "holder", "fdm", "parametric"]
+research = ["research/objects/seeed-meshtracker-x1/README.md", "research/objects/multiboard/measured-connectors.md", "research/objects/multiboard/existing-holder-examples.md"]

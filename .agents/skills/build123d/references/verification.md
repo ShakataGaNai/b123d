@@ -59,11 +59,17 @@ Recheck validity, solid count, critical envelope, and local material. Fillets ca
 
 ### At export
 
-Run the repository CLI on the model directory. Its default is one solid; intentional assemblies need `--expected-solids N`. Inspect `report.json`, STEP, STL, PNG, and offline HTML in `outputs/<relative model path>/`. Open the HTML or image rather than assuming the renderer's success means the model looks right.
+Run `uv run python scripts/build.py models/<path>` for STL + 3MF, PNG/HTML previews, and `report.json` in `outputs/<relative model path>/`. Its default is one solid; intentional assemblies need `--expected-solids N`. Add `--step` to export exact CAD exchange and run the saved/reimported STEP checks. Inspect the requested exports and open the HTML or image rather than assuming the renderer's success means the model looks right.
+
+The native model check runs when provided. Without `--step`, `report.step_round_trip` is `null` and `report.design_check` is `"passed on native"`; with `--step` the latter is `"passed on native and STEP"`. A missing check is `"not provided"` in either mode. `formats` lists `["stl", "3mf"]` plus `"step"` when requested; `mesh_3mf` records millimeter units and a passed round trip.
+
+3MF is generated from the validated saved STL without retessellation. Strict lib3mf reading and an STL round trip check mesh body count, orientation, triangle count, volume, and bounds. It is geometry-only with explicit millimeter units: no slicer settings, material assignments, or assembly tree, even for multipart models. Both previews still show the saved STL.
+
+Only after all checks pass are outputs published per file, not as an atomic directory replacement. A successful build without `--step` removes an old same-stem `.step`; failed validation preserves previous artifacts, report, and catalog. Inspect timestamps to distinguish those older outputs from a successful new build.
 
 The repository uses an **absolute** linear mesh deflection of 0.05 mm and angular deflection of 0.1 rad by default, configurable through `--linear-deflection` and `--angular-deflection`. Upstream 0.13.0 `export_stl` and `Shape.mesh` pass OCCT's relative-deflection flag; their numeric tolerance should not be described as a guaranteed absolute millimeter error. The repository exporter instead cleans cached triangulation and calls the OCCT mesher with relative deflection disabled before binary STL writing.
 
-Mesh deflection is not a fit allowance, wall thickness, or manufacturing accuracy. Tighten mesh settings where a small feature or roundness requirement needs them, while retaining the STEP BREP as the exact CAD exchange deliverable. STL carries no unit declaration: explicitly import it as millimeters in the slicer and confirm overall dimensions.
+Mesh deflection is not a fit allowance, wall thickness, or manufacturing accuracy. Tighten mesh settings where a small feature or roundness requirement needs them; request `--step` when the exact BREP is needed for CAD exchange. STL carries no unit declaration: explicitly import it as millimeters in the slicer and confirm overall dimensions.
 
 The generated preview views are **iso/top/bottom/front**, all orthographic. Use top/bottom/front for alignment and iso for feature recognition; create sections or additional interior views separately for hidden geometry. Preview tessellation and transparency can create artifacts; when a seam looks suspicious, inspect the actual topology and exported mesh rather than inferring failure from shading alone.
 

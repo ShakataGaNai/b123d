@@ -24,13 +24,18 @@ Routine library questions and model builds require no web research.
 
 - Find existing work in [`models/README.md`](models/README.md). Each model lives
   in `models/<name>/`, or `models/<project>/<part>/`, with `model.py` and
-  `model.toml`. Edit source, never generated STEP/STL.
+  `model.toml`. Edit source, never generated STL/3MF/STEP.
 - Before modeling around real hardware, reuse or create object research under
   `research/objects/<object>/`. Read [`research/README.md`](research/README.md)
   for the evidence contract and template. Save sources, dimensions, datums,
   hardware revisions, uncertainties, and downloaded-asset provenance. Link the
   notes in the model's `model.toml` `research` array. A nominal product name is
   not evidence for its mounting geometry.
+- **Measure first:** unless the object is highly complex, measure the physical
+  object or reference mesh and build/cut simple geometry from those dimensions.
+  Use rounded estimates with explicit fit allowances for ordinary holders;
+  reserve exact contour reconstruction for complexity or mating requirements
+  that measurements and simple primitives cannot adequately capture.
 - For measurements or reconstruction from existing STL files, read
   [the STL measurement skill](.agents/skills/stl-measurement/SKILL.md) for its
   runnable section helper, coordinate registration and evidence-to-CAD handoff.
@@ -41,7 +46,7 @@ Routine library questions and model builds require no web research.
 - `build()` returns a fresh Solid, Part, or Compound of solids. Build geometry
   inside functions; imports do not export files, open viewers, or run builds.
   Define `check(shape)` for design-specific dimensions, interfaces, and holes;
-  raise on failure. It runs on native geometry and the saved/reimported STEP.
+  raise on failure. It runs on native geometry and, with `--step`, saved/reimported STEP.
 - Use millimeters and degrees for geometry, with XY as the bed and +Z up unless
   the model explicitly documents a different manufacturing orientation.
   Explain functional datums, critical dimensions, material/process assumptions,
@@ -55,9 +60,12 @@ Maintain existing checks when changing their model; do not create a test
 suite for every new part.
 
 
-1. Run `uv run python scripts/build.py models/<path>`. Exactly one solid is
-   required by default; use `--expected-solids N` only for intentional multipart
-   results. Export printable assembly components independently.
+1. Run `uv run python scripts/build.py models/<path>` for STL + 3MF, previews,
+   and report. Add `--step` when exact CAD exchange and STEP round-trip checks
+   are needed; a successful default build removes an older same-stem STEP.
+   Exactly one solid is required by default; use `--expected-solids N` only
+   for intentional multipart results. Export printable assembly components
+   independently; 3MF is geometry-only, without an assembly tree or slicer settings.
 2. Inspect `outputs/<path>/report.json`, `preview.png`, and relevant views in
    `preview.html`. Both previews show the exported STL, not proof of exact BREP
    topology. Generic validity/watertightness checks are not fit, interference,

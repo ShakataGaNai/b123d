@@ -24,13 +24,13 @@ The script uses the Python standard library and resolves paths from its own loca
 - For an air-gapped machine, provision the locked Python environment and copy the matching `vendor/build123d-0.13.0/` tree beforehand. Initialization can verify that copy without network. A Git checkout alone intentionally does not contain third-party reference data.
 - Your platform needs compatible wheels for the locked dependencies. Run the example build to check the environment before modeling. USDZ conversion is a separate macOS-only option.
 
-Model exports appear under `outputs/mounting_plate/`: STEP, STL, PNG/HTML previews, and a validation report. Review the geometry and report; exporting successfully does not certify a physical print or fit.
+Model exports appear under `outputs/mounting_plate/`: STL + 3MF, PNG/HTML previews, and a validation report. Add `--step` to the build command for STEP export and reimport checks. The 3MF is geometry-only with millimeter units, not a slicer project or material assignment. Review the geometry and report; exporting successfully does not certify a physical print or fit.
 
 ## What belongs in Git
 
 | Keep in Git | Keep out of Git |
 | --- | --- |
-| `models/` source, metadata, prompts, model notes, generated Markdown catalog | Generated `outputs/`: STEP/STL/USDZ, previews, reports, rendered documentation |
+| `models/` source, metadata, prompts, model notes, generated Markdown catalog | Generated `outputs/`: STL/3MF/STEP/USDZ, previews, reports, rendered documentation |
 | `.agents/skills/`, `AGENTS.md`, project-authored `docs/`, README | Downloaded upstream reference directories under `vendor/` |
 | `scripts/`, `tests/`, `pyproject.toml`, `.python-version`, `uv.lock` | `.venv/`, Python caches, scratch `tmp/` |
 | Root-level `vendor/*.manifest.json` and `vendor/README.md` | Download archives and optional browser documentation runtime |
@@ -42,14 +42,14 @@ Ignore rules do not untrack files already in Git. Before the initial commit, mak
 
 ## Sharing designs
 
-**Default: source in Git, finished printable designs on Printables.** Publish reviewed STL files, optionally STEP for remixing, photos/previews, dimensions, material/orientation guidance, and the license you choose. Link the source revision or tag in the listing. Check for private data before publishing, especially Wi-Fi credentials encoded in QR geometry.
+**Default: source in Git, finished printable designs on Printables.** Publish reviewed STL/3MF files, optionally STEP for remixing (build with `--step`), photos/previews, dimensions, material/orientation guidance, and the license you choose. Link the source revision or tag in the listing. Check for private data before publishing, especially Wi-Fi credentials encoded in QR geometry.
 
 Use a **GitHub Release** when you want downloadable exports alongside their exact source version:
 
 1. Commit the intended source and dependency lockfile; use a clean working tree.
 2. Tag that revision with a meaningful release name, such as `wifi-qr-v1.0.0`.
 3. Build the model from that tagged source and inspect the saved artifacts.
-4. Attach a bundle of the model's STEP/STL, previews, and `report.json` to the release. Name it after the model and tag; record the full Git commit SHA in the release notes along with the build command and any parameter overrides.
+4. Attach a bundle of the model's STL/3MF, optional STEP (requested with `--step`), previews, and `report.json` to the release. Name it after the model and tag; record the full Git commit SHA in the release notes along with the build command and any parameter overrides.
 
 The report records library versions, build time, and geometry checks; it does **not** currently record Git revision. Filename/tag plus release notes provide that association. A Git SHA identifies source, not proof of a successful build or byte-identical CAD exports across platforms.
 

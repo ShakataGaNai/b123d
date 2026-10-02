@@ -145,13 +145,13 @@ projection from the tile, accidental pull-off risk, required removal frequency,
 tile mounting method, print material/orientation, and the exact authorized
 interface revision as a single system.
 
-For this workspace's requested holders, the design contract is **both preprinted
-rails and octagon mounting**, using the author-confirmed AirTag precedent. The
-table below supplies alternatives and load/access considerations; it does not
-replace either requested route with a generic default. See the
-[holder clarification](existing-holder-examples.md#user-confirmed-mounting-requirement)
-and [adapter reference](README.md). Exact profile dimensions remain a separate
-CAD/measurement requirement.
+For this workspace's requested holders, support **both preprinted rails and
+octagonal inserts into snaps**. The author confirms snap insertion and selects
+the AirTag's **13.5 mm across-flats width × 6.5 mm projection** as the peg
+reference. Keep other creators' longer pegs separate from this design target.
+See the [holder clarification](existing-holder-examples.md#user-confirmed-mounting-requirement)
+and [adapter reference](README.md). The table below provides alternatives and
+load/access considerations without replacing either requested route.
 
 | Holder need | Conservative first choice | Do not assume / required check |
 |---|---|---|

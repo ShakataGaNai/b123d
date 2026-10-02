@@ -1,6 +1,6 @@
 # Wi-Fi QR magnet plaque
 
-A parametric rectangular plaque with a raised Wi-Fi QR code, the label `Wifi SSID: WorkshopWiFi`, and four rear blind magnet pockets. The default base is 70 × 80 × 5 mm; the QR and text add 1 mm, for 6 mm overall thickness. The native model and exported STEP are checked as one valid solid; the saved STL is checked for watertightness. Physical printing and scanning still require verification.
+A parametric rectangular plaque with a raised Wi-Fi QR code, the label `Wifi SSID: WorkshopWiFi`, and four rear blind magnet pockets. The default base is 70 × 80 × 5 mm; the QR and text add 1 mm, for 6 mm overall thickness. The native model is checked as one valid solid; the saved STL is checked for watertightness and the 3MF mesh is round-trip checked. Optional STEP export adds reimported-solid checks. Physical printing and scanning still require verification.
 
 ## Build
 
@@ -13,7 +13,7 @@ uv run python scripts/usdz.py outputs/wifi_qr/wifi_qr.stl --relief-z 5
 open outputs/wifi_qr/wifi_qr.usdz
 ```
 
-The pipeline writes `outputs/wifi_qr/wifi_qr.step`, `wifi_qr.stl`, `preview.png`, `preview.html`, and `report.json`. Inspect the report and previews before slicing. The mesh uses absolute linear deflection 0.05 mm and angular deflection 0.1 rad; STEP retains the native geometry.
+The pipeline writes `outputs/wifi_qr/wifi_qr.stl`, `wifi_qr.3mf`, `preview.png`, `preview.html`, and `report.json`. For exact CAD exchange, run `uv run python scripts/build.py models/wifi_qr --step` to also write `wifi_qr.step` and check its round trip. A successful default build removes an older STEP file. Inspect the report and previews before slicing. The mesh uses absolute linear deflection 0.05 mm and angular deflection 0.1 rad. The 3MF has explicit millimeter units but contains geometry only, without slicer settings or filament assignments.
 
 `build()` uses the defaults below. Python callers may pass `build(Parameters(...))`; `check(shape)` checks the default design, not arbitrary custom parameters. `wifi_payload(params)` returns the encoded string, and `qr_matrix(params)` returns top-to-bottom Boolean symbol rows without an encoded quiet border. Importing or building the model writes no artifacts. The separate macOS USDZ conversion gives the body a light grey material and raised QR/text a black material; these do not assign printer filaments.
 

@@ -8,10 +8,13 @@ Parametric, open-top enclosure reconstructed from beanfield's [Station G3 Case �
 uv run --offline python scripts/build.py models/station_g3_open_case
 ```
 
+This generates STL + geometry-only 3MF (millimeters), previews, and a report. Add `--step` to also export and round-trip check STEP; a successful build without it removes an older same-stem STEP. Generated output paths after a successful build:
+
 - [Interactive preview](../../outputs/station_g3_open_case/preview.html)
 - [Four-view PNG](../../outputs/station_g3_open_case/preview.png)
-- [STEP](../../outputs/station_g3_open_case/station_g3_open_case.step)
+- [STEP (only with `--step`)](../../outputs/station_g3_open_case/station_g3_open_case.step)
 - [STL](../../outputs/station_g3_open_case/station_g3_open_case.stl)
+- [3MF](../../outputs/station_g3_open_case/station_g3_open_case.3mf)
 - [Validation report](../../outputs/station_g3_open_case/report.json)
 
 Generated files remain outside Git. Open the HTML directly in a WebGL-capable browser; import the STL in millimeters.
@@ -56,6 +59,8 @@ Shallow rectangular exterior pockets preserve cable-body access around the small
 ## Verification and fit limits
 
 The export workflow passed with **one valid solid**, native and STEP-round-trip design checks, and a **watertight, consistently wound, single-body STL**. Bounds are 70.6 × 122.2 × 22.3 mm. Checks cover blind-bore floors/diameters, mounting seats, support heights, the component pocket, clear port/recess volumes, the open antenna path and retained inner lips. The PNG and orbitable HTML were inspected from both sides, including power and antenna access.
+
+These are historical verification results, not evidence that a 3MF has been regenerated. Consult the latest report for current exports and checks.
 
 No board, printed fit, cable insertion, button travel, loading or thermal test has been performed. Confirm the exact motherboard/MCU/RF revisions and the reference author's **7 mm and 12 mm M2.5 standoffs with 4 mm studs** against your assembly. Ø2.5 modeled bores are not a guaranteed printed thread or clearance fit. Keep the MCU communication USB-C's electrical restrictions in the [official wiki](https://wiki.bqvoy.com/en/devkits/station-g3) separate from mechanical access.
 

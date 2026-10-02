@@ -5,6 +5,7 @@ Save evidence here **before modeling around an external object**. Examples inclu
 Existing records:
 - [BQ Voyage Station G3](objects/bq-voyage-station-g3/README.md), including official hardware sources, community case comparison, and dimensions recovered from original STL/STEP files.
 - [CooptryPoul pole B0D8BB46Y6](objects/cooptrypoul-b0d8bb46y6/README.md), including seller thread identification, nominal ACME references, and user-approved trial-fit assumptions for its L-bracket adapter.
+- [Seeed SenseCAP MeshTracker X1](objects/seeed-meshtracker-x1/README.md), including the official shell STEP, verified CAD envelope, nominal-thickness discrepancy, and community holster references.
 
 For custom modular-board holders, start with [MultiBuild / MultiBoard adapter research](objects/multiboard/README.md): board datums, attachment families, source geometry, printing/licensing constraints, and the AirTag, Wio Tracker L1 Pro and T1000E holder precedents.
 

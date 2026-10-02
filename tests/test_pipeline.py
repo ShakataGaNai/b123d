@@ -1,10 +1,17 @@
 """Geometry and metadata boundaries exercised without importing catalog models."""
 
+import json
+import locale
 from pathlib import Path
 import sys
 import tempfile
 import unittest
 from unittest.mock import patch
+import xml.etree.ElementTree as ET
+from zipfile import ZipFile
+
+import numpy as np
+import trimesh
 
 from build123d import Box, Compound, Face, Pos, Solid, export_step, import_step
 
@@ -170,7 +177,8 @@ class WorkspaceTests(unittest.TestCase):
         )
         output = self.root / "outputs" / "fixture" / "bracket"
         output.mkdir(parents=True)
-        names = ("bracket.step", "bracket.stl", "preview.png", "preview.html", "report.json")
+        names = ("bracket.step", "bracket.stl", "bracket.3mf",
+                 "preview.png", "preview.html", "report.json")
         previous = {name: f"Previous artifact: {name}\n" for name in names}
         for name, content in previous.items():
             (output / name).write_text(content)
@@ -179,12 +187,152 @@ class WorkspaceTests(unittest.TestCase):
         original_path = sys.path.copy()
         with patch.object(pipeline, "ROOT", self.root):
             with self.assertRaisesRegex(ValueError, "STEP design check failed"):
-                pipeline.build(folder, 1, 0.05, 0.1)
+                pipeline.build(folder, 1, 0.05, 0.1, step=True)
         self.assertEqual(sys.path, original_path)
         self.assertEqual({path.name for path in output.iterdir()}, set(names))
         for name, content in previous.items():
             self.assertEqual((output / name).read_text(), content)
         self.assertEqual(index.read_text(), "Previous catalog\n")
+
+    def test_3mf_build_preserves_locale_and_unicode_preview(self) -> None:
+        original_locale = locale.setlocale(locale.LC_ALL)
+        self.addCleanup(locale.setlocale, locale.LC_ALL, original_locale)
+        folder = self.model(
+            "unicode-bracket",
+            "from build123d import Box\n"
+            "def build():\n"
+            "    return Box(2, 3, 4)\n",
+        )
+        metadata = folder / "model.toml"
+        metadata.write_text(
+            metadata.read_text().replace("Fixture bracket", "Peg – rail"),
+            encoding="utf-8",
+        )
+        with patch.object(pipeline, "ROOT", self.root):
+            output = pipeline.build(folder, 1, 0.05, 0.1)
+        self.assertEqual(locale.setlocale(locale.LC_ALL), original_locale)
+        self.assertIn("Peg – rail", (output / "preview.html").read_text(encoding="utf-8"))
+        self.assertIn("Peg – rail", (self.root / "models" / "README.md").read_text(encoding="utf-8"))
+
+    @staticmethod
+    def write_previews(mesh, folder: Path, title: str, **options) -> None:
+        (folder / "preview.png").write_bytes(b"Test preview")
+        (folder / "preview.html").write_text("<html>Test preview</html>")
+
+    def read_3mf_mesh(self, path: Path) -> trimesh.Trimesh:
+        """Read the consumer's mesh directly, independently of the export library."""
+        with ZipFile(path) as package:
+            models = [name for name in package.namelist() if name.endswith(".model")]
+            self.assertEqual(len(models), 1)
+            model = ET.fromstring(package.read(models[0]))
+        ns = {"m": "http://schemas.microsoft.com/3dmanufacturing/core/2015/02"}
+        self.assertEqual(model.get("unit"), "millimeter")
+        items = model.findall("m:build/m:item", ns)
+        self.assertEqual(len(items), 1)
+        objects = {obj.get("id"): obj for obj in model.findall("m:resources/m:object", ns)}
+        obj = objects[items[0].get("objectid")]
+        self.assertIsNone(obj.find("m:components", ns))
+        vertices = np.array([
+            [float(vertex.attrib[axis]) for axis in ("x", "y", "z")]
+            for vertex in obj.findall("m:mesh/m:vertices/m:vertex", ns)
+        ])
+        triangles = np.array([
+            [int(triangle.attrib[corner]) for corner in ("v1", "v2", "v3")]
+            for triangle in obj.findall("m:mesh/m:triangles/m:triangle", ns)
+        ])
+        transform = items[0].get("transform")
+        if transform is not None:
+            matrix = np.array([float(value) for value in transform.split()]).reshape(4, 3)
+            vertices = vertices @ matrix[:3] + matrix[3]
+        return trimesh.Trimesh(vertices=vertices, faces=triangles, process=True)
+
+    def test_default_rebuild_removes_step_and_preserves_multipart_3mf_geometry(self) -> None:
+        folder = self.model(
+            "fixture/bracket",
+            "from build123d import Box, Pos\n"
+            "def build():\n"
+            "    return Pos(10, -5, 2) * Box(2, 3, 4)\n"
+            "def check(shape):\n"
+            "    assert abs(shape.volume - 24) < 1e-6\n",
+        )
+        with patch.object(pipeline, "ROOT", self.root), \
+                patch.object(pipeline, "render", side_effect=self.write_previews):
+            output = pipeline.build(folder, 1, 0.05, 0.1, step=True)
+            step_path = output / "bracket.step"
+            self.assertAlmostEqual(import_step(step_path).volume, 24)
+            initial = json.loads((output / "report.json").read_text())
+            self.assertEqual(set(initial["formats"]), {"stl", "3mf", "step"})
+            self.assertEqual(initial["design_check"], "passed on native and STEP")
+            self.assertAlmostEqual(initial["step_round_trip"]["volume_mm3"], 24)
+
+            (folder / "model.py").write_text(
+                "from build123d import Box, Compound, Pos\n"
+                "checks = 0\n"
+                "def build():\n"
+                "    return Compound([Pos(10, -5, 2) * Box(2, 3, 4),\n"
+                "                     Pos(-8, 7, 11) * Box(4, 2, 6)])\n"
+                "def check(shape):\n"
+                "    global checks\n"
+                "    checks += 1\n"
+                "    assert checks == 1, 'Unrequested STEP design check'\n"
+                "    assert abs(shape.volume - 72) < 1e-6\n"
+            )
+            pipeline.build(folder, 2, 0.05, 0.1)
+
+        self.assertFalse(step_path.exists())
+        report = json.loads((output / "report.json").read_text())
+        self.assertEqual(set(report["formats"]), {"stl", "3mf"})
+        self.assertIsNone(report["step_round_trip"])
+        self.assertEqual(report["design_check"], "passed on native")
+        self.assertEqual(report["mesh_3mf"], {"units": "mm", "round_trip": "passed"})
+        self.assertEqual(report["mesh"]["connected_bodies"], 2)
+        self.assertAlmostEqual(report["mesh"]["volume_mm3"], 72)
+        stl = trimesh.load_mesh(output / "bracket.stl")
+        mesh_3mf = self.read_3mf_mesh(output / "bracket.3mf")
+        for mesh in (stl, mesh_3mf):
+            self.assertTrue(mesh.is_watertight)
+            self.assertTrue(mesh.is_winding_consistent)
+            self.assertTrue(mesh.is_volume)
+            self.assertEqual(mesh.body_count, 2)
+            self.assertAlmostEqual(mesh.volume, 72)
+            parts = sorted(mesh.split(), key=lambda part: part.bounds[0, 0])
+            self.assertEqual(len(parts), 2)
+            np.testing.assert_allclose(parts[0].bounds, [[-10, 6, 8], [-6, 8, 14]])
+            np.testing.assert_allclose(parts[1].bounds, [[9, -6.5, 0], [11, -3.5, 4]])
+            self.assertAlmostEqual(parts[0].volume, 48)
+            self.assertAlmostEqual(parts[1].volume, 24)
+        self.assertEqual(len(mesh_3mf.faces), len(stl.faces))
+        self.assertEqual(len(mesh_3mf.faces), report["mesh"]["triangles"])
+
+    def test_failed_default_rebuild_keeps_step_and_all_previous_outputs(self) -> None:
+        folder = self.model(
+            "fixture/bracket",
+            "from build123d import Box\n"
+            "def build():\n"
+            "    return Box(2, 3, 4)\n",
+        )
+        with patch.object(pipeline, "ROOT", self.root), \
+                patch.object(pipeline, "render", side_effect=self.write_previews):
+            output = pipeline.build(folder, 1, 0.05, 0.1, step=True)
+        previous = {path.name: path.read_bytes() for path in output.iterdir()}
+        self.assertIn("bracket.step", previous)
+        self.assertIn("bracket.3mf", previous)
+        self.assertEqual(json.loads(previous["report.json"])["design_check"], "not provided")
+        index = self.root / "models" / "README.md"
+        previous_catalog = index.read_bytes()
+        (folder / "model.py").write_text(
+            "from build123d import Box\n"
+            "def build():\n"
+            "    return Box(5, 6, 7)\n"
+        )
+        original_path = sys.path.copy()
+        with patch.object(pipeline, "ROOT", self.root), \
+                patch.object(pipeline, "render", side_effect=RuntimeError("preview failed")):
+            with self.assertRaisesRegex(RuntimeError, "preview failed"):
+                pipeline.build(folder, 1, 0.05, 0.1)
+        self.assertEqual(sys.path, original_path)
+        self.assertEqual({path.name: path.read_bytes() for path in output.iterdir()}, previous)
+        self.assertEqual(index.read_bytes(), previous_catalog)
 
 
 if __name__ == "__main__":

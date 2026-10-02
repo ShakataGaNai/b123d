@@ -12,7 +12,7 @@
 - **Publisher / author:** Printables user `ShakataGaNai` for all three examples
   ([S1]–[S3]).
 - **Research date:** 2026-10-01.
-- **Consuming model:** none. This is a future-adapter precedent only.
+- **Consuming model:** [MeshTracker X1 Multiboard pocket](../../../models/meshtracker_x1_multiboard_holder/README.md), using the AirTag snap-peg precedent. Physical fit remains unverified.
 - **Source revision identity:** Printables print ID, file ID, listing publication
   timestamps, file-creation timestamp, filename, and original-byte SHA-256 are
   the only identified revisions. The author did not provide source CAD or a
@@ -31,7 +31,7 @@ citing the AirTag holder as the precedent. The work record preserves this
 Treat that functional confirmation as ground truth. It resolves the earlier
 overbroad claim that the AirTag attachment function was unidentified; it does not
 supply numerical profiles, component revisions or source-to-assembly transforms.
-The T1000E attachment interpretation remains separate and unconfirmed.
+The author subsequently confirms that the octagonal pegs insert into snaps and selects **13.5 mm across flats × 6.5 mm projection** for future holders following the AirTag precedent. This resolves the receiver-family question; individual snap revisions and the T1000E's exact source profile remain unspecified.
 
 ## Sources and access record
 
@@ -96,6 +96,8 @@ The model XML declares `unit="millimeter"`, one build item, and one mesh object:
 mesh facts, not feature or tolerance specifications.
 
 ## Mesh-inspection coordinate and evidence contract
+
+The [follow-up connector measurements](measured-connectors.md) supersede the initial uncertainty about the AirTag rear feature's function and profile: the author identifies it as the octagon mount, and sections recover a straight 13.5 mm across-flats, 6.5 mm projecting peg. The initial inspection below retains its source frame; the follow-up records the isolated-viewer transform and supplied rail separately. Physical fit remains untested.
 
 - **Source and model units:** the original 3MF XML declares millimetres. A
   temporary binary STL derivative was made from each XML mesh with no scaling,
@@ -189,16 +191,16 @@ measurement.
   direction, and retention/load rating are absent. This is the only one of the
   three examples that proves a separate rear Rail dependency.
 
-### 3. T1000E: card-like pocket/snap precedent with an ambiguous term
+### 3. T1000E: card-like pocket with an author-confirmed snap-insert route
 
 S3 calls the model a holder for the “Seeed Studio T1000E” and advises printing
-at 0.2 “to make sure the fits the snap,” with no supports. That sentence does
-not define whether “snap” is a tracker-retention feature, a printed holder
-feature, or a Multiboard attachment; it must remain ambiguous. D3's two
-separated section observations show a long internal contour. The author image [I3]
-shows a card-like, transparent device face exposed above a white lower carrier.
-It is evidence of the depicted configuration, not a scale drawing or a hardware
-revision identifier.
+at 0.2 “to make sure the fits the snap,” with no supports. That sentence alone
+does not define the attachment. The author subsequently confirmed that the
+octagonal pegs insert into snaps; the T1000E's exact profile dimensions and
+receiver revision remain unspecified. D3's two separated section observations
+show a long internal contour. The author image [I3] shows a card-like,
+transparent device face exposed above a white lower carrier. It establishes
+the depicted configuration, not a scale drawing or hardware revision.
 
 - **Retention and access evidence:** the mesh/photo support an object-specific
   pocket/carrier interpretation and exposed front face, but do not identify the
@@ -206,9 +208,9 @@ revision identifier.
   charging, button, radio, or connector access.
 - **Cable/charging evidence:** none. In particular, do not infer clearance for
   a charging puck, USB lead, or antenna from the listing image.
-- **Multiboard attachment evidence:** S3 has no named Rail or other mating
-  profile. A central/tab-like mesh feature is geometrically observable but is
-  not assigned a Multiboard interface name or dimension here.
+- **Multiboard attachment evidence:** the author confirms the snap-insert route.
+  S3 names no Rail; D3's central/tab-like feature remains to be dimensioned and
+  registered against the selected snap revision.
 
 ## Future-adapter decision: a demonstrated boundary, not a common profile
 
@@ -238,11 +240,11 @@ Missing mating geometry and the example-asset license version are tracked in
 
 | ID | Missing or ambiguous fact | Evidence and current decision | Risk / resolution needed | Blocks |
 |---|---|---|---|---|
-| U1 | Exact mating geometry/registration for AirTag; attachment function for T1000E | Author confirms AirTag rail/octagon intent; S3's T1000E mate remains unconfirmed. D1/D3 preserve mesh geometry but not registered mate revisions. | Obtain matching counterpart CAD/mesh and register parts/planes; use original AirTag CAD if available. | Exact new connector geometry/fit claims, not the confirmed AirTag attachment intent. |
+| U1 | Snap variant and feature registration for the author's octagonal inserts | Author confirms insertion into snaps and selects the AirTag's measured 13.5 mm across-flats × 6.5 mm projection. D1/D3 preserve their own mesh geometry; the particular snap revision and T1000E's exact profile are unspecified. | Use the confirmed AirTag dimensions for that precedent; identify the snap revision and register its seating face for a new assembly. | New assembly/revision compatibility claims, not the confirmed snap-insert route or chosen 6.5 mm projection. |
 | U2 | Wio Rail identity and geometry | S2 requires a rear Rail; D2 has no Rail file. | Obtain a revision-specific Rail CAD/drawing and assemble/section it with D2. | Wio board connection. |
 | U3 | Hardware/case revision and actual envelope for each target | No official hardware drawings were used; no scale is taken from photographs. S2 names only the shipping case. | Obtain revision-specific official mechanical source or identified specimen measurements, including accessories. | Any physical-fit statement or replacement retainer. |
 | U4 | Retention, removal, cable, connector, charging, cooling, and tool clearances | Listing text and one author image per model do not specify them. | Define intended use and verify with a representative assembly / fit coupon. | Claims about serviceability, cable routing, or reliable retention. |
-| U5 | Meaning and dimension of S3 “snap” | The word is not defined by S3 and D3 cannot establish semantics. | Author clarification, native CAD, or mating/assembly instructions. | T1000E snap reconstruction. |
+| U5 | T1000E's exact attachment profile and snap variant | The author confirms that the octagonal pegs insert into snaps. D3's exact feature dimensions and specific receiver revision remain undocumented. | Inspect its source attachment feature and register it against the chosen snap if reproducing T1000E-specific geometry. | T1000E-specific reconstruction, not the confirmed snap-insert route. |
 | U6 | License version/full terms and durable redistribution basis | API returns a license name only; repository has no stated redistribution/use context. | Obtain the listing's full license text/version and establish intended repository distribution before committing originals or derivatives. | Asset redistribution only; source links/checksums remain usable. |
 
 ## Verification status and required next evidence
@@ -255,10 +257,11 @@ Missing mating geometry and the example-asset license version are tracked in
 | Exact board mate / physical fit | No mating assembly, official target envelope, print, or physical test. | inconclusive / blocked |
 | Future adapter validation | Register retainer and named mate to real datums; inspect clearances in CAD; then print a target-specific retention and service-access coupon before asserting fit. | not run |
 
-No consuming model exists yet. A future `model.toml` should link this record by
-repository-relative path `research/objects/multiboard/existing-holder-examples.md`
-and separately link the exact hardware and Multiboard mating-interface records it
-uses.
+The X1 holder's `model.toml` links this record and its hardware and measured
+connector records. Future consumers should likewise link
+`research/objects/multiboard/existing-holder-examples.md` and the hardware and
+Multiboard mating-interface records they use. CAD checks do not establish
+physical insertion, retention or service access.
 
 ## Source links
 

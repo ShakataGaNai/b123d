@@ -1,6 +1,6 @@
 # Wi-Fi QR plaque request
 
-Create a parametric build123d model of a rectangular Wi-Fi QR plaque with rear magnet pockets. Use Python 3.14 and build123d 0.13.0. Return one fused, valid solid from `build()`; do not write export files inside the model. Supply `check(shape)` for the default native and round-tripped STEP geometry.
+Create a parametric build123d model of a rectangular Wi-Fi QR plaque with rear magnet pockets. Use Python 3.14 and build123d 0.13.0. Return one fused, valid solid from `build()`; do not write export files inside the model. Supply `check(shape)` for the default native geometry and for round-tripped STEP when the build CLI is invoked with `--step`.
 
 ## Default dimensions and placement
 

@@ -6,7 +6,7 @@ Use `Compound(children=[...], label="...")` to preserve independently named asse
 
 Return a compound from `build()` for intentional multipart geometry, and invoke the build tool with `--expected-solids N`. Keep an assembled configuration and a print-bed layout conceptually separate: a working assembly may include raised, rotated, or interlocking parts that are not directly printable in that arrangement. Export individual manufactured members or an explicitly arranged print layout when required.
 
-Set labels such as `base`, `lid`, and `spacer_left` on actual finished shapes. Colors aid review but do not define topology or material requirements. STEP can preserve richer assembly semantics than STL; an STL is tessellated geometry without the assembly tree or unit metadata.
+Set labels such as `base`, `lid`, and `spacer_left` on actual finished shapes. Colors aid review but do not define topology or material requirements. STEP can preserve richer assembly semantics than STL; an STL is tessellated geometry without the assembly tree or unit metadata. The repository's default 3MF declares millimeters but contains a combined geometry-only mesh, not an assembly tree or material assignments. Request optional STEP with `--step` when CAD exchange is needed.
 
 ## Coordinate ownership
 
