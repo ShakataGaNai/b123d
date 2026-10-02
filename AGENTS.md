@@ -116,8 +116,9 @@ tasks' changes; repository-wide inclusion requires explicit user authorization.
 
 ### Issue tracker
 
-Issues live in GitHub Issues (`ShakataGaNai/b123d`), via the `gh` CLI.
-See [docs/agents/issue-tracker.md](docs/agents/issue-tracker.md).
+Before starting, deferring, committing, or publishing work, read
+[the GitHub issue lifecycle](docs/agents/issue-tracker.md), including
+[commit-driven completion](docs/agents/issue-tracker.md#commit-driven-completion).
 
 **Every engineering work item goes here—no exceptions.** Bugs found during other
 work, deferred follow-ups, unresolved root causes, and TODOs all need GitHub issues.
