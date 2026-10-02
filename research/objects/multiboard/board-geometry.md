@@ -153,7 +153,7 @@ No authoritative dimensioned board drawing was found in the accessed Hub pages. 
 
 Before any direct mating model is described as compatible, pin the exact board/connector revisions, recover the unknown section/profile dimensions, and exercise insertion/removal and retention on a representative printed coupon. Acceptance thresholds must come from that interface's actual geometry and calibrated process, not the unspecified “0.25 mm tolerance” wording.
 
-The missing exact mating geometry and example-asset license version are tracked in [research follow-up issue #10](https://github.com/ShakataGaNai/b123d/issues/10). That issue does not replace the interface-specific unknowns or confer permission to redistribute vendor originals.
+The missing exact mating geometry and example-asset license version were recorded in [research follow-up issue #10](https://github.com/ShakataGaNai/b123d/issues/10), now closed at the user's request. Revisit compatibility only if print testing exposes a problem. Closure does not confer permission to redistribute vendor originals.
 
 ## Change record
 

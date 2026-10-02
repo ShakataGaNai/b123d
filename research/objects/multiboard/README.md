@@ -128,7 +128,7 @@ The detailed records preserve missing dimensions and source-access limitations. 
 
 Expanded community research recovered a 13.45 mm across-flats male peg and revision-scoped tile, thread and slot parameters. See [the community evidence](community-specifications.md). The author confirms that the octagonal pegs insert into snaps and selects **6.5 mm projection** for future holders following their precedent. The community peg's 11 mm length remains evidence of that separate design, not our target.
 
-Missing exact mating geometry and the example asset-license-version prerequisite are tracked in open [b123d #10](https://github.com/ShakataGaNai/b123d/issues/10). Official STEP listings identify a route to source geometry, but the observed download flow requires authenticated access. Until an exact mate is acquired or an identified assembly is measured, this reference supports planning rather than guaranteed-compatible connector CAD.
+The user closed [b123d #10](https://github.com/ShakataGaNai/b123d/issues/10): no further Multiboard research is required now. Revisit specific compatibility problems only if print testing exposes them. The recorded mating-geometry and license-version uncertainties remain evidence limits, not an active research prerequisite for the current holder. Closure does not establish physical fit or permission to redistribute vendor assets.
 
 ## Research verification performed
 

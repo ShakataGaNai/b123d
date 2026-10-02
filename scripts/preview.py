@@ -47,12 +47,14 @@ def raster_view(
     depth = np.full((size, size), -np.inf)
     light = forward + vertical * 0.6 - right * 0.3
     light /= np.linalg.norm(light)
-    intensity = 0.4 + 0.6 * np.maximum(mesh.face_normals @ light, 0)
+    # Face iteration dirties Trimesh's hash; avoid whole-buffer revalidation per face.
+    normals = mesh.face_normals
+    intensity = 0.4 + 0.6 * np.maximum(normals @ light, 0)
     colors = (intensity[:, None] * (
         np.array([69, 143, 181]) if face_colors is None else face_colors
     )).astype(np.uint8)
     for face_index, face in enumerate(mesh.faces):
-        if mesh.face_normals[face_index] @ forward <= 0:
+        if normals[face_index] @ forward <= 0:
             continue
         triangle = points[face]
         low = np.maximum(np.floor(triangle[:, :2].min(axis=0)).astype(int), 0)

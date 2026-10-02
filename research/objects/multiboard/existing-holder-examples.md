@@ -235,8 +235,10 @@ features are registered; lack of a connector name in S1 is not a functional bloc
 
 ## Unknowns, conflicts, and modeling blocks
 
-Missing mating geometry and the example-asset license version are tracked in
-[issue #10](https://github.com/ShakataGaNai/b123d/issues/10).
+Missing mating geometry and the example-asset license version were recorded in
+[issue #10](https://github.com/ShakataGaNai/b123d/issues/10), now closed at the
+user's request. Revisit compatibility only if print testing exposes a problem;
+the evidence limits below do not require further research for the current holder.
 
 | ID | Missing or ambiguous fact | Evidence and current decision | Risk / resolution needed | Blocks |
 |---|---|---|---|---|

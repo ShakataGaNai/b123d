@@ -109,6 +109,8 @@ Observed under **Python 3.14.7 / build123d 0.13.0** using `uv run python`:
 3. Imported S2 with `build123d.import_step`: non-null, valid compound; **3 solids**, each valid. Recorded bounds and component volumes in `inspection.json`.
 4. Exported a visualization STL and inspected its interactive Plotly preview in Chromium; observed the shell outline and circular button feature. The standard CPU PNG renderer timed out at 120 seconds and again at 180 seconds with a coarser STL; an interactive HTML visualization was used instead. The retained mesh has 52,815 triangles. Renderer investigation is tracked separately in [#13](https://github.com/ShakataGaNai/b123d/issues/13). This is not a physical fit, tolerance, wall-thickness or printability check.
 
+Renderer follow-up ([#13](https://github.com/ShakataGaNai/b123d/issues/13)): profiling identified repeated whole-face-buffer hashing when the triangle loop accessed Trimesh's `face_normals` property. Reading normals once per view removed that overhead without changing the raster algorithm or mesh. The actual preview CLI completed this same **52,815-triangle shell in 3.80 seconds**, including imports, four-view PNG and offline HTML; the PNG was inspected. All four shell views matched the previous raster algorithm pixel-for-pixel on detached arrays, as did all four configured-color Wi-Fi plaque views. The **31-test suite passed**, including depth-occlusion and geometry-mutation checks. This runtime is an observation on the local environment, not a cross-machine guarantee.
+
 The initial #12 source-research pass did not build a holder or measure a production specimen. The holder was subsequently built under #14 and corrected under #18 using the measured lower slopes above; physical fit remains untested.
 
 ## Change record
@@ -118,3 +120,4 @@ The initial #12 source-research pass did not build a holder or measure a product
 | 2026-10-01 | Found and imported official September 14 shell STEP; recorded nominal-versus-CAD thickness conflict and community holster reference. | None yet. |
 | 2026-10-01 | Measured lower-body STL band and selected rounded 57 × 8 mm estimate for a 25 mm-tall rectangular pocket; no exact contour reconstruction. | `models/meshtracker_x1_multiboard_holder/` |
 | 2026-10-01 | Measured the 5 mm run / 10 mm rise lower corner slopes and replaced the square-bottom pocket with an angled profile; peg uses the registered module and is bottom-aligned. | `models/meshtracker_x1_multiboard_holder/` |
+| 2026-10-02 | Fixed the CPU preview bottleneck by reading face normals once per view; verified the unchanged reference mesh renders in 3.80 seconds. | Preview tool only; CAD and physical-fit status unchanged. |

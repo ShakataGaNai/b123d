@@ -244,6 +244,15 @@ uv run --offline python scripts/docs.py api Solid.make_box
 The snapshot is an ignored local reference cache, not another installed build123d package. Normal builds use the locked `.venv`. External product dimensions, third-party libraries, and destinations linked from upstream docs are outside this build123d documentation snapshot.
 
 
+## License
+
+The repository's original code and documentation are available under the
+[MIT License](LICENSE), copyright © 2026 Jon Davis.
+
+Third-party code, reference assets, and derived material remain subject to their
+applicable source licenses and attribution requirements. The repository license
+does not override those terms; see source-file notices and the research records.
+
 ## Repository maintenance
 
 Commit model source/metadata, prompts, original research, permitted input assets, skill references, scripts, tests, reference manifests, and `uv.lock`. Generated `outputs/`, downloaded `vendor/` subdirectories, scratch `tmp/`, Python caches, and `.venv/` are ignored. See [initialization and sharing policy](docs/initialization.md) for clean checkouts and unimplemented publishing proposals.
