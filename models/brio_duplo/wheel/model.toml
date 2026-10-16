@@ -1,0 +1,7 @@
+name = "BRIO-track wagon wheel"
+description = "16 mm-diameter wheel with 4 mm tread, 1 mm inward hub and 3.4 mm bore; print four for the DUPLO-studded wagon."
+units = "mm"
+status = "trial-fit; physical compatibility unverified"
+print_tested = false
+tags = ["brio", "train", "wheel", "fdm"]
+research = ["research/objects/brio-wooden-track/README.md"]

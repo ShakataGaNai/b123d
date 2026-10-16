@@ -8,6 +8,8 @@ Existing records:
 - [Seeed SenseCAP MeshTracker X1](objects/seeed-meshtracker-x1/README.md), including the official shell STEP, verified CAD envelope, nominal-thickness discrepancy, and community holster references.
 - [Seeed XIAO ESP32S3 + Wio-SX1262](objects/seeed-xiao-esp32s3-wio-sx1262/README.md), including official 2×7 header coordinates, assumed male-header dimensions, and the compact two-slot Multiboard cradle.
 - [M5Stack Unit C6L U202](objects/m5stack-unit-c6l/README.md), including official 24 × 8 mm shell cross-section, body/connector heights, and the 12 mm-deep drop-in Multiboard pocket.
+- [BRIO World wooden railway](objects/brio-wooden-track/README.md), including official length labels, firsthand groove/connector measurements, double-sided basic-track configurations and CAD verification limits.
+- [LEGO DUPLO stud interface](objects/lego-duplo/README.md), including official system context, community/caliper dimensions and the trial-fit studded BRIO-track wagon.
 
 For custom modular-board holders, start with [MultiBuild / MultiBoard adapter research](objects/multiboard/README.md): board datums, attachment families, source geometry, printing/licensing constraints, and the AirTag, Wio Tracker L1 Pro and T1000E holder precedents.
 

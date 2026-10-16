@@ -1,0 +1,7 @@
+name = "DUPLO wagon on BRIO-style track — inspection assembly"
+description = "12-solid fit inspection: short track, eight-stud chassis, four wheels, two smooth shaft envelopes and four collar envelopes. Export printable parts separately."
+units = "mm"
+status = "inspection assembly; physical fit unverified"
+print_tested = false
+tags = ["brio", "duplo", "train", "assembly"]
+research = ["research/objects/brio-wooden-track/README.md", "research/objects/lego-duplo/README.md"]

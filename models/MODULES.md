@@ -28,6 +28,57 @@ models, use the generated [model catalog](README.md).
 | Positive octagonal insert into a Multiboard snap | `from models.multiboard.peg import peg` | [Multiboard peg and rail cutout](#multiboard-peg-and-rail-cutout) · [source](multiboard/peg.py) |
 | Negative community Fix-Point rail receiver tool | `from models.multiboard.rail import rail_cutout` | [Multiboard peg and rail cutout](#multiboard-peg-and-rail-cutout) · [source](multiboard/rail.py) |
 | Basic ¾–5 ACME male envelope or enlarged female cutting tool | `from models.pole_l_bracket.thread import thread_envelope` | [ACME thread envelope](#acme-thread-envelope) · [source](pole_l_bracket/thread.py) |
+| Configurable basic BRIO-style track and interface checks | `from models.brio_duplo.track.geometry import build_track, check_track` | [Basic wooden-railway track](#basic-wooden-railway-track) · [source](brio_duplo/track/geometry.py) |
+
+## Basic wooden-railway track
+
+```python
+from build123d import Pos
+from models.brio_duplo.track.config import TrackConfig
+from models.brio_duplo.track.geometry import build_track, check_track
+
+config = TrackConfig(turn_radius=202, turn_angle=45, rise=18)
+track = build_track(config)
+check_track(track, config)
+placed = Pos(100, 0, 0) * track
+```
+
+`build_track(config)` returns a fresh single-solid `Compound`/`Part` without
+exporting or reading configuration files. It uses high-level constructors:
+construct outside active builders, then explicitly insert the result; it is
+not a builder-safe factory. `check_track(shape, config)` checks native or
+reimported STEP material against the configured interfaces.
+`TrackConfig` is frozen; lengths are mm and angles degrees. Public fields are
+`length=54` (straight shoulder contribution), `turn_radius=202` (horizontal
+centerline), `turn_angle=0` (signed left/right), `rise=0` (end minus start),
+`double_sided=True`, `ends=("female", "male")` (start/end), and `end_flat=24`.
+Turns use radius × absolute angle for horizontal path length; `length` is
+ignored for curves. End connectors are independent male/female choices.
+
+Start shoulder is at X=Y=0 with tangent +X and underside Z=0 for a rise.
+A fall starts at Z=−`rise`, ending at Z=0. Plan curves turn left for positive
+angles, right for negative. Connectors lie in horizontal end frames; grades
+have level pads and a cubic eased elevation transition. Flat curves are exact
+circular sweeps. Grades are smooth lofts through oriented sections at no more
+than 3 mm horizontal spacing, with an independent ideal-route material check
+using a 0.04 mm CAD sampling tolerance; this is not a manufacturing tolerance
+or a global surface-error bound. No junction/splitter geometry is included.
+
+Radius must exceed the 20 mm half-width; angle magnitude is below 180°.
+Geometry rejects overlapping end-pocket spans, undersized level pads and
+graded transitions whose ideal maximum slope exceeds 0.5 mm/mm. The
+[model instructions](brio_duplo/README.md) describe TOML presets and printing.
+Sources are [BRIO research](../research/objects/brio-wooden-track/README.md)
+and [DUPLO research](../research/objects/lego-duplo/README.md); grooves, joints
+and print allowances are approximate, with no verified factory fit or safety.
+
+Consumers are `brio_duplo/track/model.py` and the default straight reference
+in `brio_duplo/assembly/model.py`. Rebuild both and the exported variant matrix
+when this module changes. The 12 exercised configurations passed native/STEP
+interface and connector-mating checks and watertight STL/3MF validation;
+artifacts and configuration-specific reports are under
+`outputs/brio_duplo/variants/`. Physical print, clutch, retention, and wagon
+running on curves/grades remain untested.
 
 ## ACME thread envelope
 
