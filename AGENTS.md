@@ -112,6 +112,27 @@ tasks' changes; repository-wide inclusion requires explicit user authorization.
    agent already committed your changes, do not amend or rewrite their commit
    without explicit authorization.
 
+## Git commit attribution
+
+Every Git commit you create or amend MUST end with this final nonempty message line,
+separated from the preceding text by a blank line:
+
+```text
+Co-Authored-By: <agent-name>/<current-agent-version> (<current-model-name>)
+```
+
+Resolve all values at commit time: use the agent actually creating the commit
+(for example, `claude-code`, `codex`, or `omp`), its running version from session
+runtime information or the corresponding CLI (`claude --version`, `codex --version`,
+or `omp --version`), and the active model for the committing session, not a
+configured default or a subagent's model. If any value is unavailable, obtain it
+before committing rather than guessing. Replace an existing committing-agent
+attribution when amending so it reflects the current agent, version and model.
+Any other trailer (such as a session link) goes above this line, never after it.
+
+Example only: `Co-Authored-By: omp/18.11.1 (openai-codex/gpt-6-astra)`.
+The agent, version and model are dynamic; this example is not a fixed value.
+
 ## Agent skills
 
 ### Issue tracker

@@ -1,0 +1,7 @@
+name = "XIAO two-slot Multiboard cradle"
+description = "19.64 × 29.4 mm pins-down XIAO cradle with matching 1.5 mm inner/outer slot walls, R1 prong corners, two header slots, an 8.4 × 1.4 × 8 mm-deep LoRa antenna slot, and 13.5 mm AF × 6.5 mm Multiboard snap peg; physical fit unverified."
+units = "mm"
+status = "unverified-fit"
+print_tested = false
+tags = ["xiao", "esp32s3", "wio-sx1262", "meshtastic", "multiboard", "holder", "fdm", "parametric"]
+research = ["research/objects/seeed-xiao-esp32s3-wio-sx1262/README.md", "research/objects/multiboard/measured-connectors.md"]
