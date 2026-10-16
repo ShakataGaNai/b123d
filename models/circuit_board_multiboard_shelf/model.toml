@@ -1,0 +1,7 @@
+name = "Circuit-board Multiboard display shelf"
+description = "40 × 30 mm usable open-sided deck, 3 mm floor, 10 mm front lip, standard R3 outside corners/R0.6 exposed edges, and two Multiboard snap pegs on 25 mm centers; unverified load capacity."
+units = "mm"
+status = "unverified-fit"
+print_tested = false
+tags = ["circuit-board", "display", "shelf", "multiboard", "fdm", "parametric"]
+research = ["research/objects/multiboard/measured-connectors.md"]

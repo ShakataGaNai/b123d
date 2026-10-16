@@ -1,0 +1,7 @@
+name = "WisMesh Pocket V1 Multiboard cradle"
+description = "20 mm-deep 53.6 × 31.6 mm original WisMesh Pocket V1 cradle with bottom USB/side-switch reliefs, standard R3 outside corners/R0.6 exposed edges, 2.5 mm floor/walls and two 25 mm-spaced snap pegs; reseller envelope, physical fit unverified."
+units = "mm"
+status = "unverified-fit"
+print_tested = false
+tags = ["rakwireless", "wismesh-pocket", "meshtastic", "multiboard", "holder", "fdm", "parametric"]
+research = ["research/objects/rak-wismesh-pocket-v1/README.md", "research/objects/multiboard/README.md", "research/objects/multiboard/measured-connectors.md"]

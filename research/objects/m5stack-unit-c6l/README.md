@@ -67,7 +67,7 @@ cradle. Upper screen and antenna connectors are outside the supported band.
   It requires a separate compatible snap, not the tile's large Multihole directly.
 - Default printing setup: Prusa MK4S, PETG, and a 0.4 mm nozzle, confirmed by the
   user on 2026-10-16. Slicer profile is unspecified; 0.2 mm layers remain a
-  recommendation, not a confirmed setting. This holder has not been print tested.
+  recommendation, not a confirmed setting. The user subsequently confirmed this holder printed and validated good on 2026-10-16.
   Upright pocket orientation; inspect peg's lower diagonal overhangs in the slicer.
   Confirmed printing defaults alone do not justify changing the fit allowance.
 

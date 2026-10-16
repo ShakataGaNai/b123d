@@ -1,6 +1,6 @@
 # Cardputer Mesh Multiboard pocket
 
-A landscape, bottom-first storage pocket for the user’s Cardputer Mesh specimen, sized to include its buttons, with rear spacing for Cap LoRa-1262 and two antenna rests. Work item: [#30](https://github.com/ShakataGaNai/b123d/issues/30). Physical fit is unverified.
+A landscape, bottom-first storage pocket for the user’s Cardputer Mesh specimen, sized to include its buttons, with rear spacing for Cap LoRa-1262 and two antenna rests. Work item: [#30](https://github.com/ShakataGaNai/b123d/issues/30). The user confirmed it printed and validated good on 2026-10-16; current geometry is approved.
 
 All dimensions are **mm**:
 
@@ -28,7 +28,7 @@ The rear slot boundary is Y=8.5; the arm ends/peg roots are Y=28.5 at X=±25, Z=
 
 Both antenna saddles are centered at Y=19.75, halfway along the exposed 17.5 mm arm length between the holder’s rear exterior and peg roots. Their circular axes run along X, allowing a 10 mm diameter antenna to lie across both arms with half its diameter recessed. The exact Ø10 grooves have no extra fit allowance and leave 8.5 mm material beneath them. Actual antenna length, connector and cable routing remain unverified. Four rear vertical arm corners and the two concave inside roots have 2 mm radii; the snap profiles remain unchanged.
 
-The peg geometry imports `models.multiboard.peg.peg` unchanged. These pegs enter **Multiboard snaps**, not bare tile Multiholes. Fit both receivers on the documented 25 mm grid, two grid intervals apart. Receiver revision and simultaneous insertion remain physically untested. Retain the source-derived peg attribution and applicable Attribution–Noncommercial–ShareAlike terms described in [connector research](../../research/objects/multiboard/measured-connectors.md) and the [module registry](../MODULES.md#multiboard-peg-and-rail-cutout).
+The peg geometry imports `models.multiboard.peg.peg` unchanged. These pegs enter **Multiboard snaps**, not bare tile Multiholes. Fit both receivers on the documented 25 mm grid, two grid intervals apart. The user approved the printed holder; receiver revision and quantified retention remain unspecified. Retain the source-derived peg attribution and applicable Attribution–Noncommercial–ShareAlike terms described in [connector research](../../research/objects/multiboard/measured-connectors.md) and the [module registry](../MODULES.md#multiboard-peg-and-rail-cutout).
 
 ## Build and verification
 
@@ -40,4 +40,4 @@ Outputs are in `outputs/cardputer_mesh_multiboard_holder/`: `cardputer_mesh_mult
 
 The 2026-10-16 build passed native validity and one-solid checks, the design-specific cavity/insertion, floor/wall cores, arm web continuity, circular saddle profiles, rounded corner probes, peg-section/location and nominal upright rear-clearance checks, watertight STL with consistent winding, and 3MF round-trip verification. Native volume is 22050.818 mm³; mesh has 2196 triangles. The four-view PNG was visually inspected. The HTML was generated and opened in the default browser at the user's request; agent visual inspection of HTML was unavailable because no browser connection was available.
 
-Print in the exported orientation, floor/arms and lowest peg flats on XY, slot upward. PETG with 0.2 mm layers is an untested starting assumption. Inspect the peg's 45° underside facets and perimeter structure in the slicer. No slicer, physical fit, strength or retention test has been performed; CAD checks do not establish print readiness.
+Print in the exported orientation, floor/arms and lowest peg flats on XY, slot upward. PETG with 0.2 mm layers is a starting assumption; actual settings for the user's approved print were not reported. Inspect the peg's 45° underside facets and perimeter structure in the slicer. User-confirmed print/fit approval does not establish quantified strength or retention limits.

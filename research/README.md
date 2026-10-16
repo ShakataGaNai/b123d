@@ -8,6 +8,11 @@ Existing records:
 - [Seeed SenseCAP MeshTracker X1](objects/seeed-meshtracker-x1/README.md), including the official shell STEP, verified CAD envelope, nominal-thickness discrepancy, and community holster references.
 - [Seeed XIAO ESP32S3 + Wio-SX1262](objects/seeed-xiao-esp32s3-wio-sx1262/README.md), including official 2×7 header coordinates, assumed male-header dimensions, and the compact two-slot Multiboard cradle.
 - [M5Stack Unit C6L U202](objects/m5stack-unit-c6l/README.md), including official 24 × 8 mm shell cross-section, body/connector heights, and the 12 mm-deep drop-in Multiboard pocket.
+- [Seeed SenseCAP T1000-E](objects/seeed-t1000e/README.md), manufacturer card envelope and 20 mm-deep Multiboard pocket.
+- [RAKwireless WisMesh Tag](objects/rak-wismesh-tag/README.md), manufacturer enclosure drawing and 20 mm-deep Multiboard pocket.
+- [BQ Voyage Station G2](objects/bq-voyage-station-g2/README.md), original enclosure envelope and full-width clearance for user-reported rear screws.
+- [LILYGO T-Deck Plus](objects/lilygo-tdeck-plus/README.md), manufacturer finished-case dimensions and USB-access cradle.
+- [Original WisMesh Pocket V1](objects/rak-wismesh-pocket-v1/README.md), original manufacturer interface documentation and explicitly V1 reseller enclosure dimensions.
 - [BRIO World wooden railway](objects/brio-wooden-track/README.md), including official length labels, firsthand groove/connector measurements, double-sided basic-track configurations and CAD verification limits.
 - [LEGO DUPLO stud interface](objects/lego-duplo/README.md), including official system context, community/caliper dimensions and the trial-fit studded BRIO-track wagon.
 

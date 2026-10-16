@@ -4,9 +4,9 @@
 
 - Manufacturer: Seeed Studio. Exact product: **SenseCAP MeshTracker X1 for Meshtastic**, SKU **100093876** [S1, S3]. Not the T1000-E or Wio Tracker L1.
 - Research date: 2026-10-01. Work item: [b123d #12](https://github.com/ShakataGaNai/b123d/issues/12).
-- Intended interface: an external holder around the supplied enclosure. The [25 mm Multiboard pocket](../../../models/meshtracker_x1_multiboard_holder/README.md) uses this record; the user confirmed the current holder printed, tested, and approved on 2026-10-16. USB cable and supplied leather keychain are not included in the CAD envelope verification.
+- Intended interface: an external holder around the supplied enclosure. The [25 mm Multiboard pocket](../../../models/meshtracker_x1_multiboard_holder/README.md) uses this record. User print approval on 2026-10-16 applies to the preceding single-peg revision; the current dual-peg/labeled revision is unprinted. USB cable and supplied leather keychain are not included in the CAD envelope verification.
 - Production hardware revision: **unknown**. CAD filename/export date identifies downloaded geometry, not the revision of a purchased specimen.
-- Readiness: **ready as a nominal CAD reference for holder design**, with user-confirmed physical approval of the current 25 mm pocket. Official shell STEP exists; the 8 mm specification versus approximately 9 mm CAD thickness remains unresolved.
+- Readiness: **ready as a nominal CAD reference for holder design**, with historical physical approval of the single-peg 25 mm pocket. Official shell STEP exists; the 8 mm specification versus approximately 9 mm CAD thickness remains unresolved.
 
 ## Sources
 
@@ -96,7 +96,7 @@ Use **S2 official STEP** as the nominal geometric reference, retaining all relev
 
 - Treat approximately **9 mm** as the full-device CAD envelope; use the measured **8 mm lower band** only for the explicitly scoped 25 mm pocket above. Do not claim either value matches every shipping unit.
 - Keep holder fit clearance, print compensation and retention geometry separate from nominal device geometry; the holder selects 0.4 mm per-side slot allowance, not a manufacturing tolerance.
-- User approval establishes a successful physical test of the current holder, not universal snap-fit reliability across hardware revisions and print processes. Confirm applicability when changing either; quantified retention/load results were not supplied.
+- User approval establishes a successful physical test of the preceding single-peg holder, not the #43 dual-peg/finish/label revision or universal snap reliability. Renew physical approval after changes; quantified retention/load results were not supplied.
 - Preserve USB-C plug access, button access, buzzer openings and insertion/removal space as holder-specific checks. The shell does not include a verified cable/plug envelope.
 - Original shell CAD is not automatically a printable solid device dummy or a licensed redistributable design. A manufacturing clearance envelope is a later design operation, not something proven by import validity.
 
@@ -111,7 +111,7 @@ Observed under **Python 3.14.7 / build123d 0.13.0** using `uv run python`:
 
 Renderer follow-up ([#13](https://github.com/ShakataGaNai/b123d/issues/13)): profiling identified repeated whole-face-buffer hashing when the triangle loop accessed Trimesh's `face_normals` property. Reading normals once per view removed that overhead without changing the raster algorithm or mesh. The actual preview CLI completed this same **52,815-triangle shell in 3.80 seconds**, including imports, four-view PNG and offline HTML; the PNG was inspected. All four shell views matched the previous raster algorithm pixel-for-pixel on detached arrays, as did all four configured-color Wi-Fi plaque views. The **31-test suite passed**, including depth-occlusion and geometry-mutation checks. This runtime is an observation on the local environment, not a cross-machine guarantee.
 
-The initial #12 source-research pass did not build a holder or measure a production specimen. The holder was subsequently built under #14 and corrected under #18 using the measured lower slopes above. On 2026-10-16, the user confirmed the current holder **printed, tested, and approved** ([#29](https://github.com/ShakataGaNai/b123d/issues/29)); printer/material settings, specimen revision and quantified load results remain unspecified.
+The initial #12 source-research pass did not build a holder or measure a production specimen. The holder was subsequently built under #14 and corrected under #18 using the measured lower slopes above. On 2026-10-16, the user confirmed that preceding single-peg holder **printed, tested, and approved** ([#29](https://github.com/ShakataGaNai/b123d/issues/29)); printer/material settings, specimen revision and quantified load results remain unspecified. This is historical evidence, not approval of the subsequent #43 revision.
 
 ## Change record
 
@@ -122,3 +122,6 @@ The initial #12 source-research pass did not build a holder or measure a product
 | 2026-10-01 | Measured the 5 mm run / 10 mm rise lower corner slopes and replaced the square-bottom pocket with an angled profile; peg uses the registered module and is bottom-aligned. | `models/meshtracker_x1_multiboard_holder/` |
 | 2026-10-02 | Fixed the CPU preview bottleneck by reading face normals once per view; verified the unchanged reference mesh renders in 3.80 seconds. | Preview tool only; CAD and physical-fit status unchanged. |
 | 2026-10-16 | Recorded user confirmation that the current holder is printed, tested, and approved; geometry unchanged. | `models/meshtracker_x1_multiboard_holder/` |
+| 2026-10-16 | #43 user-requested revision: preserve angled seat; two unchanged 13.5 AF × 6.5 snap pegs at X=±12.5, Z=6.75; R3/R0.6 finish; `X1` deboss 0.2 mm inside the slot floor, flipped 180° from the former underside marking for mounted readability. Revised geometry unprinted. | `models/meshtracker_x1_multiboard_holder/` |
+
+The #43 label uses nominal 4 mm DejaVuSans from matplotlib's explicit bundled font, actual glyph-bound centering and an upward-facing inner-floor plane at Z=2.5. Text runs +X with letter tops toward the board (+Y), readable from the front (−Y). The glyph void spans Z=2.3…2.5 with intact backing and a flat exterior underside. Peg mating geometry and 0.8 mm hidden overlap are unchanged. Boolean comparison proves only the previous underside glyphs were filled and the new inside glyphs removed. See the model README for current export verification; physical fit remains unverified.

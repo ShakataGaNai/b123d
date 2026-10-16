@@ -1,0 +1,7 @@
+name = "Station G2 Multiboard pocket"
+description = "Rounded 20 mm-deep drop-in pocket for the user-corrected 58 × 12 mm Station G2 body; 59.2 × 19.1 mm slot includes full-width 6.5 mm rear screw relief, closed 2.5 mm floor/walls and two 25 mm-spaced snap pegs; physical fit unverified."
+units = "mm"
+status = "unverified-fit"
+print_tested = false
+tags = ["bq-voyage", "station-g2", "meshtastic", "multiboard", "holder", "fdm", "parametric"]
+research = ["research/objects/bq-voyage-station-g2/README.md", "research/objects/multiboard/measured-connectors.md"]

@@ -1,0 +1,7 @@
+name = "WisMesh Tag Multiboard pocket"
+description = "20 mm insertion-depth portrait WisMesh Tag pocket, 59.8 × 8.3 mm slot, two 25 mm-spaced snap pegs, R3/R0.6 finish and 0.2 mm inside-floor Wis Tag deboss readable when mounted; unprinted revision (#43)."
+units = "mm"
+status = "unverified-fit"
+print_tested = false
+tags = ["rakwireless", "wismesh-tag", "meshtastic", "multiboard", "holder", "fdm", "parametric"]
+research = ["research/objects/rak-wismesh-tag/README.md", "research/objects/multiboard/measured-connectors.md", "research/objects/multiboard/board-geometry.md"]

@@ -2,7 +2,7 @@
 
 Millimeters. XY is the bed, +Z is up, USB faces -Y, snap peg points +Y.
 Header plastic seats at Z=13.5; pins enter downward. The center is open.
-An assumed 8 x 1 mm antenna enters the rear 8.4 x 1.4 x 8 mm blind slot.
+An assumed 8 x 1 mm antenna enters the rear 8.4 x 1.4 x 12 mm blind slot.
 See the linked research for manufacturer coordinates and assumed header stock.
 """
 
@@ -42,7 +42,8 @@ REAR_WALL = 2.0
 ANTENNA_WIDTH = 8.0
 ANTENNA_THICKNESS = 1.0
 ANTENNA_CLEARANCE = 0.2
-ANTENNA_SLOT_DEPTH = 8.0
+ANTENNA_MIN_FLOOR = 1.5  # Preserve a closed floor as thick as the prong walls.
+ANTENNA_SLOT_DEPTH = HEIGHT - ANTENNA_MIN_FLOOR
 PEG_ACROSS_FLATS = 13.5
 PEG_PROJECTION = 6.5
 JOIN_OVERLAP = 0.2
@@ -82,8 +83,8 @@ def build() -> Solid | Compound:
         raise ValueError("Peg must fit the back and stay above the print bed")
     if not (ANTENNA_WIDTH > 0 and ANTENNA_THICKNESS > 0 and ANTENNA_CLEARANCE > 0):
         raise ValueError("Antenna dimensions and per-side clearance must be positive")
-    if not (0 < ANTENNA_SLOT_DEPTH <= 10 and ANTENNA_SLOT_DEPTH < HEIGHT):
-        raise ValueError("Antenna slot must be blind and no more than 10 mm deep")
+    if not (0 < ANTENNA_SLOT_DEPTH <= HEIGHT - ANTENNA_MIN_FLOOR):
+        raise ValueError("Antenna slot must preserve the 1.5 mm minimum closed floor")
     if ANTENNA_SLOT_WIDTH + 2 * REAR_WALL >= WIDTH - 2 * OUTER_RADIUS:
         raise ValueError("Antenna slot must leave solid end walls inside the corners")
     if not (0 < INNER_RADIUS < CENTER_WIDTH / 2

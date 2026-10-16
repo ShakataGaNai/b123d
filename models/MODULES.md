@@ -27,6 +27,8 @@ models, use the generated [model catalog](README.md).
 | --- | --- | --- |
 | Positive octagonal insert into a Multiboard snap | `from models.multiboard.peg import peg` | [Multiboard peg and rail cutout](#multiboard-peg-and-rail-cutout) · [source](multiboard/peg.py) |
 | Negative community Fix-Point rail receiver tool | `from models.multiboard.rail import rail_cutout` | [Multiboard peg and rail cutout](#multiboard-peg-and-rail-cutout) · [source](multiboard/rail.py) |
+| Standard Multiboard holder corners and exposed-edge rounds | `from models.multiboard.finish import rounded_blank, round_edges` | [Multiboard holder finishing](#multiboard-holder-finishing) · [source](multiboard/finish.py) |
+| Deterministic 0.2 mm inside-floor identification text | `from models.multiboard.label import label_tool, check_label` | [Multiboard slot-floor labels](#multiboard-slot-floor-labels) · [source](multiboard/label.py) |
 | Basic ¾–5 ACME male envelope or enlarged female cutting tool | `from models.pole_l_bracket.thread import thread_envelope` | [ACME thread envelope](#acme-thread-envelope) · [source](pole_l_bracket/thread.py) |
 | Configurable basic BRIO-style track and interface checks | `from models.brio_duplo.track.geometry import build_track, check_track` | [Basic wooden-railway track](#basic-wooden-railway-track) · [source](brio_duplo/track/geometry.py) |
 
@@ -162,3 +164,77 @@ Both standalone tools and the two boolean examples passed native/STEP checks
 and watertight single-body STL export. Generated inspection previews live under
 `outputs/multiboard/{peg,rail_cutout,peg_coupon,rail_receiver_coupon}/`; they are
 ignored artifacts, not cataloged models or print-test evidence.
+
+## Multiboard holder finishing
+
+The shared [finish module](multiboard/finish.py) defines
+`OUTSIDE_CORNER_RADIUS = 3.0` and `EDGE_RADIUS = 0.6`, in millimeters.
+All new Multiboard holder bodies use **R3 convex outside plan/free-end profile
+corners and R0.6 exposed top/bottom/cutout edges**. These are distinct feature classes,
+applied consistently, not per-model guesses. Functional device-seat contours
+may use measured radii; square support datums and concave floor/wall joints
+stay intact. Snap pegs are added afterward with mating geometry unchanged.
+Already-completed XIAO, C6L and Cardputer geometry is intentionally excluded.
+Pocket V1's free upper ends use the same R3 profile radius before the R0.6 edge
+round. Keeping profile and edge radii distinct avoids coincident spherical-pole
+triangulation failures while retaining the requested rounded side access.
+
+```python
+from build123d import Align, Box, Pos
+from models.multiboard.finish import rounded_blank
+
+blank = rounded_blank(60, 16, 23)
+cavity = Pos(0, 0, 2.5) * Box(
+    55, 11, 24, align=(Align.CENTER, Align.CENTER, Align.MIN),
+)
+body = blank - cavity
+```
+
+`rounded_blank(width, depth, height)` returns fresh one-solid geometry centered
+on XY, bottom Z=0, height along +Z: R3 vertical corners and R0.6 top/bottom
+outside perimeter rounds. Width/depth must exceed 6 mm, height 1.2 mm.
+`round_edges(edges)` returns the containing shape with R0.6 on an explicit
+nonempty current-shape edge selection; callers check selection cardinality and
+keep mating/support features out. Both use algebra constructors: call outside
+active builders, then explicitly insert returned geometry. No import-time
+geometry, export or viewer side effects. They fail rather than silently omit
+requested rounds.
+
+Consumers: X1, T1000-E, WisMesh Tag, T-Deck Plus, WisMesh Pocket V1, Station G2,
+and circuit-board shelf. Rebuild all seven native/STEP models and inspect
+exported previews after changes to this standard. This is a design convention,
+not a strength or printability certification. Task: [#43](https://github.com/ShakataGaNai/b123d/issues/43).
+
+## Multiboard slot-floor labels
+
+```python
+from models.multiboard.label import label_tool, check_label
+
+dimensions = dict(floor_width=50, floor_depth=7, floor_height=2.5)
+marked = body - label_tool("T1000E", **dimensions)
+check_label(marked, "T1000E", **dimensions)
+```
+
+`label_tool(text, *, floor_width, floor_depth, floor_height, font_size=4.0)`
+returns fresh cutting geometry spanning Z=`floor_height - 0.2`…`floor_height` mm.
+Subtract from the flat inside floor. The font is the locked matplotlib package's `DejaVuSans.ttf`,
+selected by explicit path and checked alongside its bundled license; missing
+font/glyphs fail rather than silently substituting. Actual glyph bounds are
+centered at X=Y=0 and must leave 0.25 mm margin within the given floor rectangle.
+The floor must be thicker than 0.2 mm. All lengths and font size are mm.
+`LABEL_DEPTH=0.2` is fixed; `LABEL_FONT_SIZE=4.0` is the default.
+
+Text local +X/+Y maps to world +X/+Y, normal +Z, letter tops toward the board
+(+Y), readable from the front (−Y) looking into the slot. This is a 180° flip
+about Y from the former underside label. Construct outside active builders,
+then explicitly subtract/insert; imports do not build or export.
+`check_label(shape, text, *, floor_width, floor_depth, floor_height,
+font_size=4.0)` raises unless the complete glyph cut, surrounding floor and
+intact backing match. Its bounds tolerance accounts for OCCT curved-glyph
+bounding-box expansion, not extra physical cut depth.
+
+Consumers: X1 (`X1`), T1000-E (`T1000E`) and WisMesh Tag (`Wis Tag`).
+Rebuild all three after geometry/font/orientation changes. A one-layer deboss
+requires slicer and physical legibility checks; geometric verification is not
+print evidence. See [text/font precedent](wifi_qr/README.md) and
+[#43](https://github.com/ShakataGaNai/b123d/issues/43).

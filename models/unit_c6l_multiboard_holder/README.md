@@ -3,7 +3,7 @@
 Simple top-entry gravity holder for **M5Stack Unit C6L U202**. Rounded left/right
 outside corners, flat closed floor, and the existing Multiboard snap peg. No
 latch, rail or exact shell-contour reconstruction. Hardware revision unknown;
-physical fit and print quality **unverified**.
+printed and validated good by the user on 2026-10-16. Current geometry is approved.
 
 ## Dimensions
 
@@ -70,7 +70,8 @@ slot/wall boundaries, concentric rounded walls, unobstructed nominal-device
 insertion path, analytical volume, and bottom-aligned octagonal peg dimensions.
 The exported STL is one connected, watertight, consistently wound body. 3MF
 millimeter-unit round-trip passed. PNG views and interactive HTML front/rear
-views were inspected. No physical print, snap-fit or cable-fit test was performed.
+views were inspected. The user subsequently confirmed a successful physical print
+and good validation on 2026-10-16; cable-fit and load limits remain unspecified.
 
 Artifacts under `outputs/unit_c6l_multiboard_holder/`:
 

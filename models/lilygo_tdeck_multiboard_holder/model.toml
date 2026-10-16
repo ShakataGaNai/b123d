@@ -1,0 +1,7 @@
+name = "LilyGO T-Deck Plus Multiboard cradle"
+description = "Manufacturer-informed rounded lower seat for T-Deck Plus: 20 mm insertion, 73.6 × 22 mm maximum pocket, USB relief, shared R3/R0.6 outside finish and two unchanged 25 mm-spaced snap pegs; physical fit unverified."
+units = "mm"
+status = "unverified-fit"
+print_tested = false
+tags = ["lilygo", "t-deck-plus", "meshtastic", "multiboard", "holder", "fdm", "parametric"]
+research = ["research/objects/lilygo-tdeck-plus/README.md", "research/objects/multiboard/README.md", "research/objects/multiboard/measured-connectors.md"]
