@@ -1,0 +1,7 @@
+name = "Cardputer Mesh Multiboard pocket"
+description = "84.8 × 17 mm slot, 10 mm deep, with 20 mm rear spacing, rounded arms, two 10 mm diameter semicircular antenna rests and snap pegs on 50 mm centers; physical fit unverified."
+units = "mm"
+status = "unverified-fit"
+print_tested = false
+tags = ["cardputer", "meshtastic", "multiboard", "holder", "fdm", "parametric"]
+research = ["research/objects/m5stack-cardputer-mesh/README.md", "research/objects/multiboard/measured-connectors.md", "research/objects/multiboard/README.md"]
