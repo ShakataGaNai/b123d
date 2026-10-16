@@ -1,0 +1,7 @@
+name = "BRIO-style parameterized track"
+description = "One configurable straight/curve/rise/fall track with independent male/female ends and double-sided grooves by default; optional flat underside. Generic metadata does not identify the loaded configuration."
+units = "mm"
+status = "original trial-fit design; physical fit and child safety unverified"
+print_tested = false
+tags = ["brio", "train", "track", "parameterized"]
+research = ["research/objects/brio-wooden-track/README.md"]

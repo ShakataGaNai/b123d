@@ -112,6 +112,18 @@ tasks' changes; repository-wide inclusion requires explicit user authorization.
    agent already committed your changes, do not amend or rewrite their commit
    without explicit authorization.
 
+## Git commit attribution
+
+Every Git commit you create or amend MUST end with this final nonempty message line, separated from the preceding text by a blank line:
+
+```text
+Co-Authored-By: omp/<current-omp-version> (<current-model-name>)
+```
+
+Resolve both values at commit time: use the running OMP version (session runtime information, or `omp --version`) and the active model for the committing session, not a configured default or a subagent's model. If either value is unavailable, obtain it before committing rather than guessing. Replace an existing OMP attribution when amending so it reflects the current version and model.
+
+Example only: `Co-Authored-By: omp/18.2.9 (GPT-6-Astra)`. The version and model are dynamic; this example is not a fixed value.
+
 ## Agent skills
 
 ### Issue tracker

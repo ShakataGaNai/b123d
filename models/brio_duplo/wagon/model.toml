@@ -1,0 +1,7 @@
+name = "DUPLO-studded BRIO wagon chassis"
+description = "63.8 × 31.8 mm deck with eight 16 mm-pitch trial-fit DUPLO studs and two 3.4 mm axle bearings; requires four wheels and retained metal axles."
+units = "mm"
+status = "trial-fit; physical compatibility unverified"
+print_tested = false
+tags = ["brio", "duplo", "train", "wagon", "fdm"]
+research = ["research/objects/lego-duplo/README.md", "research/objects/brio-wooden-track/README.md"]

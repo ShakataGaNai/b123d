@@ -6,6 +6,8 @@ Existing records:
 - [BQ Voyage Station G3](objects/bq-voyage-station-g3/README.md), including official hardware sources, community case comparison, and dimensions recovered from original STL/STEP files.
 - [CooptryPoul pole B0D8BB46Y6](objects/cooptrypoul-b0d8bb46y6/README.md), including seller thread identification, nominal ACME references, and user-approved trial-fit assumptions for its L-bracket adapter.
 - [Seeed SenseCAP MeshTracker X1](objects/seeed-meshtracker-x1/README.md), including the official shell STEP, verified CAD envelope, nominal-thickness discrepancy, and community holster references.
+- [BRIO World wooden railway](objects/brio-wooden-track/README.md), including official length labels, firsthand groove/connector measurements, double-sided basic-track configurations and CAD verification limits.
+- [LEGO DUPLO stud interface](objects/lego-duplo/README.md), including official system context, community/caliper dimensions and the trial-fit studded BRIO-track wagon.
 
 For custom modular-board holders, start with [MultiBuild / MultiBoard adapter research](objects/multiboard/README.md): board datums, attachment families, source geometry, printing/licensing constraints, and the AirTag, Wio Tracker L1 Pro and T1000E holder precedents.
 
