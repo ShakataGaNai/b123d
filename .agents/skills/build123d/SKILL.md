@@ -7,7 +7,24 @@ description: Model and revise mechanical CAD with build123d; diagnose geometry f
 
 Use this skill for Python-authored boundary-representation CAD in this repository. Target **build123d 0.13.0 / Python 3.14**, managed with uv. API facts below are checked against the upstream `v0.13.0` tag; manufacturing suggestions are starting points requiring process-specific validation.
 
-## Workflow
+## Sources and model layout
+
+- Find existing work in [models/README.md](../../../models/README.md). Each model
+  lives in `models/<name>/` or `models/<project>/<part>/`, with `model.py` and
+  `model.toml`. Model IDs are relative folder paths. Edit source, never exports.
+- Before modeling around hardware, read [the research contract](../../../research/README.md)
+  and reuse or create `research/objects/<object>/`. Record sources, dimensions,
+  datums, hardware revisions, uncertainties and downloaded-asset provenance;
+  link the record in `model.toml`'s `research` array. A product name alone does not
+  establish mounting geometry. Keep source facts separate from design allowances.
+- **Measure first:** measure the object or reference mesh, then use simple primitives
+  and rounded estimates with explicit fit allowances for ordinary holders. Reserve
+  exact contour reconstruction for complexity or mating requirements that need it.
+  For STL measurements, read [the STL skill](../stl-measurement/SKILL.md) before
+  choosing features; use its section helper, registration and evidence handoff.
+- Keep reusable helpers beside the model or in its project folder; reserve `model.py`
+  for entrypoints. Put inputs beside source, not under `outputs/`, and resolve them
+  from `__file__`. Treat downloaded Python as executable untrusted code.
 
 Before constructing geometry, **read [models/MODULES.md](../../../models/MODULES.md)**.
 Reuse matching modules instead of rebuilding their geometry. When adding,
@@ -15,13 +32,51 @@ changing, renaming, or removing a reusable module, update that registry's index
 and contract in the same change. Follow its entry requirements and consumer
 revalidation rules; this is part of completion, not optional follow-up.
 
-1. **Define the contract.** Record overall envelope, datums, mating dimensions, hole diameters/centers, wall/floor thickness, expected number of solids, and manufacturing process. Separate required dimensions from assumptions. Use millimeters and degrees; the print bed is XY and +Z is up.
-2. **Choose a construction.** Use sketch/extrude for prismatic parts, revolve for rotational profiles, loft for changing sections, and sweep for constant sections along paths. Prefer a small number of meaningful features to a tessellation-like pile of primitives. Read the corresponding reference below before using an unfamiliar operation.
-3. **Build the functional geometry.** Put construction inside parameterless `build()` in `models/<name>/model.py`, with a `model.toml` metadata sidecar; nested `models/<project>/<part>/` folders are supported. Return a build123d `Part`, `Solid`, or `Compound`, not a builder. Keep named design parameters and derived dimensions separate. Finish primary volumes and cuts before cosmetic edge treatments. Store reusable real-object dimensions and source evidence in `research/objects/<object>/README.md`, and link that path in the model metadata's `research` list rather than duplicating research.
-4. **Make intent checkable.** Add `check(shape)` for design-specific assertions: envelope, critical wall/floor thickness, hole position/radius, analytical volume where available, or mating gap. Assert expected selector cardinality before modifying selected features. Validate parameter relationships before constructing geometry.
-5. **Run the actual export path.** Run `uv run python scripts/build.py models/<name>` for STL + 3MF, or add `--step` for exact CAD exchange and STEP round-trip checks. One solid is the default; declare intentional multipart geometry with `--expected-solids N`. Inspect the meshes, optional STEP, `preview.png`, offline `preview.html`, and `report.json` under `outputs/<relative model path>/`; use the [export verification contract](references/verification.md#at-export) for report semantics and 3MF limitations. Successful builds regenerate `models/README.md` from metadata; `uv run python scripts/index.py` regenerates the index without executing geometry. A successful export does not establish dimensional correctness.
-6. **Inspect and iterate.** Review the generated iso/top/bottom/front views and inspect interior sections separately where relevant. Check every critical dimension and fit. If a boolean or edge treatment fails, isolate the first failing operation rather than hiding it. Finish only when exported geometry, checks, and visual inspection agree with the contract.
-7. **Deliver through tracked commits.** Before committing or publishing finished work, read [commit-driven completion](../../../docs/agents/issue-tracker.md#commit-driven-completion) for closing references and automatic GitHub issue closure.
+## Modeling workflow
+
+Use a modeling workflow, not TDD: build, measure critical geometry, export and
+visually inspect. Separate per-model test suites are optional for explicitly
+requested checks or unusual risks such as QR decoding. Maintain existing checks
+when changing a model; do not create a test suite for every new part.
+
+1. **Define the contract.** Record envelope, functional datums, mating dimensions,
+   holes, wall/floor thickness, expected solids, material/process assumptions and
+   calibrated fit allowances. Use millimeters and degrees, XY as the bed and +Z up
+   unless a different manufacturing orientation is documented.
+2. **Construct the model.** Prefer simple features: sketch/extrude for prismatic
+   parts, revolve for rotational profiles, loft for transitions, sweep for paths.
+   Read the matching reference before unfamiliar operations. Keep geometry inside
+   functions: parameterless `build()` returns a fresh Solid, Part, or Compound of
+   solids, not a builder. Imports must not build, export or open viewers. Separate
+   named parameters from derived values; finish primary geometry before cosmetic edges.
+3. **Check design intent.** Define `check(shape)` and raise on incorrect dimensions,
+   interfaces, holes or other requirements. Validate parameter relationships and
+   selector cardinality. The export CLI runs this on native geometry and, with
+   `--step`, the saved/reimported STEP. Kernel validity alone does not establish fit.
+
+## Completion gate
+
+1. Run `uv run python scripts/build.py models/<path>` for STL + 3MF, previews and
+   report. Add `--step` when exact CAD exchange and round-trip checks are needed.
+   Exactly one solid is required by default; use `--expected-solids N` only for
+   intentional multipart results. Export printable assembly components independently.
+2. Read [the export verification contract](references/verification.md#at-export).
+   Inspect `outputs/<path>/report.json`, `preview.png`, and relevant `preview.html`
+   views. Both previews show the saved STL, not proof of exact BREP topology.
+   Check critical geometry and hidden interiors separately; resolve failures at
+   their first operation. Generic validity/watertightness does not establish fit,
+   interference, strength, wall thickness or printability. Use the slicer before
+   claiming readiness to print.
+3. Keep `model.toml` accurate. Successful builds regenerate `models/README.md`;
+   after adding/renaming/removing models or changing metadata alone, run
+   `uv run python scripts/index.py`. Never hand-edit the catalog.
+4. Report source/artifact paths, actual checks, units, researched hardware revision,
+   assumptions and remaining limitations. Failed builds may leave old outputs;
+   check report timestamps. 3MF is geometry-only, without slicer settings or an
+   assembly tree. A successful default build removes an older same-stem STEP.
+5. Before committing/publishing, follow [commit-driven completion](../../../docs/agents/issue-tracker.md#commit-driven-completion)
+   and [commit-message rules](../../../AGENTS.md#git-commit-messages). Keep validation
+   evidence in documentation, reports, issues or PRs, never in commit messages.
 
 ## Task-to-reference map
 

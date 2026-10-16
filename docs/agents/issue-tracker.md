@@ -15,7 +15,7 @@ All engineering work for this repository is tracked in [ShakataGaNai/b123d GitHu
    ```
 3. Keep the issue current when scope changes, a blocker appears, or a root cause remains unresolved. Record discoveries even if they are outside the current request. Connect related issues with links rather than relying on an agent's conversation history.
 4. Before deferring anything, create or link its issue. A TODO comment may point to the issue but must not be the sole record. State the blocker and what makes the work actionable.
-5. When acceptance criteria pass, follow [commit-driven completion](#commit-driven-completion). Record the verification in the fixing commit or PR and let GitHub close the issue when the work reaches the default branch.
+5. When acceptance criteria pass, follow [commit-driven completion](#commit-driven-completion). Record verification evidence in model documentation, reports, the issue or PR, never in the commit message. Let GitHub close the issue when the work reaches the default branch.
 
 GitHub Issues is the durable shared work queue. Personal task lists and global agent task-tool preferences do not replace this repository's tracker. Session checklists may mirror an issue's steps, but cannot be the only record of work. `TODO.md`, if introduced, is for documented known limitations with issue links, not another work queue. No such file is required now.
 
@@ -49,14 +49,29 @@ If issue creation fails, inspect authentication and repository access, then retr
 
 Keep issues open while their fixes are uncommitted, unpushed, or awaiting merge.
 Do not manually close commit-delivered work or post a "completed, not committed
-yet" closure comment. Put verification in the commit/PR; routine completion
-comments duplicating GitHub's automatic closing event are unnecessary.
+yet" closure comment. Keep commit messages brief and high-level, following
+[the commit-message rules](../../AGENTS.md#git-commit-messages). Put verification
+in model documentation, reports, the issue or PR, never in commit messages.
+Routine completion comments duplicating GitHub's automatic closing event are unnecessary.
 Manual closure is for explicit non-implementation decisions, such as a user's
 cancellation or a duplicate issue; record that reason without claiming a fix.
 Closure does not establish a deployment, physical print, or test beyond the
 verification actually performed.
 
 Source: [GitHub's closing-keyword and default-branch rules](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue).
+
+### Concise commit example
+
+```text
+Add XIAO Multiboard cradle and record X1 approval
+
+* Added Seeed Studio XIAO Multiboard cradle with antenna slot.
+* Seeed X1 Multiboard cradle has been print tested and approved.
+```
+
+Append the applicable `Fixes`/`Refs` lines and the final attribution required by
+[AGENTS.md](../../AGENTS.md#git-commit-attribution). Print approval is a model-status
+change; build commands and validation results belong outside the commit message.
 
 ## Planned publishing
 
