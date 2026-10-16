@@ -52,6 +52,8 @@ For `models/<path>/`, the build writes to `outputs/<path>/`:
 
 STL and 3MF are the default print interchange formats; STEP is optional for CAD editing. The 3MF contains geometry only: no slicer settings, material assignments, or assembly tree; multipart geometry is a combined mesh. **None is printer instructions:** choose orientation, material, nozzle, layers, supports, and other machine settings in a slicer, inspect its layer preview, and generate the printer's supported job format there.
 
+The default printing setup is **Prusa MK4S, PETG, and a 0.4 mm nozzle**, unless a model specifies otherwise. Layer height and slicer profile remain explicit assumptions until confirmed; these defaults do not establish calibrated fit tolerances or physical print-test status.
+
 A successful build without `--step` removes any old same-stem `.step` file. Failed validation leaves previous artifacts, report, and catalog in place; check timestamps before treating outputs as current. After all checks pass, artifacts are published per file, not as an atomic directory replacement.
 
 ```sh

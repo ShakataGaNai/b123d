@@ -7,6 +7,7 @@ Existing records:
 - [CooptryPoul pole B0D8BB46Y6](objects/cooptrypoul-b0d8bb46y6/README.md), including seller thread identification, nominal ACME references, and user-approved trial-fit assumptions for its L-bracket adapter.
 - [Seeed SenseCAP MeshTracker X1](objects/seeed-meshtracker-x1/README.md), including the official shell STEP, verified CAD envelope, nominal-thickness discrepancy, and community holster references.
 - [Seeed XIAO ESP32S3 + Wio-SX1262](objects/seeed-xiao-esp32s3-wio-sx1262/README.md), including official 2×7 header coordinates, assumed male-header dimensions, and the compact two-slot Multiboard cradle.
+- [M5Stack Unit C6L U202](objects/m5stack-unit-c6l/README.md), including official 24 × 8 mm shell cross-section, body/connector heights, and the 12 mm-deep drop-in Multiboard pocket.
 
 For custom modular-board holders, start with [MultiBuild / MultiBoard adapter research](objects/multiboard/README.md): board datums, attachment families, source geometry, printing/licensing constraints, and the AirTag, Wio Tracker L1 Pro and T1000E holder precedents.
 

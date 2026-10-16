@@ -1,0 +1,7 @@
+name = "Unit C6L Multiboard pocket"
+description = "12 mm-deep 24.8 × 8.8 mm drop-in slot for M5Stack Unit C6L U202, rounded sides, 2.5 mm floor/walls and a bottom-aligned 13.5 mm AF × 6.5 mm snap peg; physical fit unverified."
+units = "mm"
+status = "unverified-fit"
+print_tested = false
+tags = ["m5stack", "unit-c6l", "meshtastic", "multiboard", "holder", "fdm", "parametric"]
+research = ["research/objects/m5stack-unit-c6l/README.md", "research/objects/multiboard/measured-connectors.md"]
