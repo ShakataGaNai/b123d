@@ -1,0 +1,7 @@
+name = "PVC laser stand: coupler"
+description = "Short double cross PVC connector, 12.7 mm engagement each side."
+units = "mm"
+status = "trial-fit; unprinted"
+print_tested = false
+tags = ["pvc", "laser", "petg"]
+research = ["research/objects/pvc-laser-stand/README.md"]

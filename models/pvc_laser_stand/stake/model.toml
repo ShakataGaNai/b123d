@@ -1,0 +1,7 @@
+name = "PVC laser stand: stake"
+description = "120 mm cross ground stake with 25.4 mm pipe engagement."
+units = "mm"
+status = "trial-fit; unprinted"
+print_tested = false
+tags = ["pvc", "laser", "petg"]
+research = ["research/objects/pvc-laser-stand/README.md"]

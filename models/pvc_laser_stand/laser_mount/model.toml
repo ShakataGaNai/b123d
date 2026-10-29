@@ -1,0 +1,7 @@
+name = "PVC laser stand: laser mount"
+description = "Perpendicular 18 mm laser sleeve with two M4 forming pilots."
+units = "mm"
+status = "trial-fit; unprinted"
+print_tested = false
+tags = ["pvc", "laser", "petg"]
+research = ["research/objects/pvc-laser-stand/README.md"]

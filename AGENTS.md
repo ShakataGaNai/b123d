@@ -23,6 +23,10 @@ Find models in [the catalog](models/README.md). **Measure first; edit source,
 never generated exports.** Use the pinned APIs and local documentation for
 routine library questions and builds; see [offline lookup](docs/offline-build123d.md).
 
+Always include a clickable `preview.html` link for every delivered model or
+component in the final response after CAD creation, revision, or export. Make
+the HTML previews the primary review links, alongside any downloadable artifacts.
+
 For tooling changes, run `uv run python -m unittest discover -s tests -v` and
 exercise the affected CLI end to end. Model-specific checks belong to the CAD workflow.
 

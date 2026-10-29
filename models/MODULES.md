@@ -25,6 +25,7 @@ models, use the generated [model catalog](README.md).
 
 | Use | Import | Contract |
 | --- | --- | --- |
+| Cross inserts, laser sleeve and stake for PVC | `from models.pvc_laser_stand.geometry import cross, make` | [PVC laser stand geometry](#pvc-laser-stand-geometry) |
 | Positive octagonal insert into a Multiboard snap | `from models.multiboard.peg import peg` | [Multiboard peg and rail cutout](#multiboard-peg-and-rail-cutout) · [source](multiboard/peg.py) |
 | Negative community Fix-Point rail receiver tool | `from models.multiboard.rail import rail_cutout` | [Multiboard peg and rail cutout](#multiboard-peg-and-rail-cutout) · [source](multiboard/rail.py) |
 | Standard Multiboard holder corners and exposed-edge rounds | `from models.multiboard.finish import rounded_blank, round_edges` | [Multiboard holder finishing](#multiboard-holder-finishing) · [source](multiboard/finish.py) |
@@ -255,3 +256,21 @@ Rebuild all three after geometry/font/orientation changes. A one-layer deboss
 requires slicer and physical legibility checks; geometric verification is not
 print evidence. See [text/font precedent](wifi_qr/README.md) and
 [#43](https://github.com/ShakataGaNai/b123d/issues/43).
+
+## PVC laser stand geometry
+
+`from models.pvc_laser_stand.geometry import cross, plate, make, verify`
+provides the three [PVC laser stand](pvc_laser_stand/README.md) consumers.
+All dimensions are mm; pipe axis +Z, origin centered on the entry tip at Z=0.
+`cross(length)` returns intersected 4 mm webs clipped to a 20.9 mm diameter,
+with a 1 mm entry taper; length must exceed 1 mm. `plate(z)` returns the
+26.67 mm diameter, 3 mm thick stop positioned at z. Example:
+`cross(25.4) + plate(25.4)`. `make(kind)` accepts `laser_mount`, `coupler`, or
+`stake` and returns a fresh single-solid part in print orientation;
+`verify(shape, kind)` checks its envelope and critical mating cuts, including
+the laser sleeve staying inside the stop plate's circular plan envelope and
+its two vertical roof M4 pilot holes. Factories
+use algebra constructors outside active builders; imports have no geometry
+or export side effects. Parameters are module constants, not calibrated fits.
+See [hardware evidence](../research/objects/pvc-laser-stand/README.md).
+Rebuild all three consumers after changes. No physical print/fit approval.
