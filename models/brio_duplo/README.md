@@ -88,9 +88,9 @@ Corresponding artifacts are under `outputs/brio_duplo/wagon/`, `outputs/brio_dup
 
 Double-sided grooves are the default for wooden-track-style reversibility, but underside channels may require bridging or support. Single-sided flat straight track is the simpler bed-contact option. Curves and grades may require different orientation, support and build-plate capacity; nominal length is not the full connector-inclusive envelope. Groove floors, peg necks, socket throats and axle bores depend on printer accuracy, material and orientation. Trial-fit small pieces before committing to a layout. Check underside support removal, socket clearance, wheel freedom, stud clutch and collar retention physically. No material, slicer settings, load rating, child-safe retention or successful print is established by these design dimensions.
 
-Printing-strategy work is explicitly deferred in
-[#26](https://github.com/ShakataGaNai/b123d/issues/26); it must not change the
-double-sided geometry default merely to simplify printing.
+The proposed print-strategy experiment in
+[#26](https://github.com/ShakataGaNai/b123d/issues/26) was closed as not planned.
+Physical printing remains unverified; retain the requested double-sided default.
 
 ## Exercised verification and artifacts
 

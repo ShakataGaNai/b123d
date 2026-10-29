@@ -32,13 +32,10 @@ exercise the affected CLI end to end. Model-specific checks belong to the CAD wo
 
 ## Issue tracking
 
-Before starting, deferring, committing or publishing work, read
-[the GitHub issue lifecycle](docs/agents/issue-tracker.md).
-**Every engineering work item needs a GitHub issue**, including bugs found during
-other work, deferred follow-ups, unresolved root causes and TODOs. This tracker
-takes precedence over personal trackers; session checklists do not replace it.
-`TODO.md` is for known limitations only. Use commit closing references and
-verify automatic closure after authorized publication to the default branch.
+Use GitHub issues selectively for substantial work that benefits from durable
+tracking or when the user requests one. Routine requests, model revisions,
+research steps and pending print feedback do not require separate issues.
+When using issues, follow [the GitHub issue lifecycle](docs/agents/issue-tracker.md).
 
 ## Commit scope in a shared workspace
 

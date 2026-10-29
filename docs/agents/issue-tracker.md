@@ -1,25 +1,33 @@
 # GitHub issue tracker
 
-All engineering work for this repository is tracked in [ShakataGaNai/b123d GitHub Issues](https://github.com/ShakataGaNai/b123d/issues), using the `gh` CLI. Use `--repo ShakataGaNai/b123d` explicitly so commands work before a remote is configured and do not target another repository accidentally.
+Use [GitHub Issues](https://github.com/ShakataGaNai/b123d/issues) selectively,
+through `gh --repo ShakataGaNai/b123d`.
+
+## When to track work
+
+- Create an issue when the user requests one, or for substantial bugs, projects
+  or deferred work that benefit from a durable shared record.
+- Handle routine requests, small fixes, model iterations and research steps in
+  the current task. An issue is not a prerequisite for doing or committing work.
+- Keep related work together. Search existing open and closed issues before
+  creating one; update an existing issue when its scope already covers the work.
+- Record ordinary uncertainties and print limitations in model documentation.
+  Pending physical feedback alone does not require a follow-up issue or keep a
+  delivered modeling task open. Keep print-tested status separate from delivery.
+- Create deferred-work issues only for concrete, worthwhile future actions,
+  rather than every possible improvement or unverified assumption.
 
 ## Work lifecycle
 
-1. Search existing open and closed issues before creating a duplicate:
-   ```sh
-   gh issue list --repo ShakataGaNai/b123d --state all --search 'search terms'
-   gh issue view 3 --repo ShakataGaNai/b123d
-   ```
-2. Create an issue for each independent work item if none exists. Include the problem or goal, relevant evidence, scope, and observable acceptance criteria. A large issue may use a checklist for its implementation steps; independently deferred work gets its own linked issue.
-   ```sh
-   gh issue create --repo ShakataGaNai/b123d --title 'Concise work-item title' --body-file /path/to/issue-body.md
-   ```
-3. Keep the issue current when scope changes, a blocker appears, or a root cause remains unresolved. Record discoveries even if they are outside the current request. Connect related issues with links rather than relying on an agent's conversation history.
-4. Before deferring anything, create or link its issue. A TODO comment may point to the issue but must not be the sole record. State the blocker and what makes the work actionable.
-5. When acceptance criteria pass, follow [commit-driven completion](#commit-driven-completion). Record verification evidence in model documentation, reports, the issue or PR, never in the commit message. Let GitHub close the issue when the work reaches the default branch.
+For tracked work, describe the problem, scope and observable acceptance criteria.
+Keep the issue current when its scope changes. Store validation evidence in the
+model documentation, report, issue or PR. Close completed work promptly after
+publication; retain only actual remaining scope in an open issue.
 
-GitHub Issues is the durable shared work queue. Personal task lists and global agent task-tool preferences do not replace this repository's tracker. Session checklists may mirror an issue's steps, but cannot be the only record of work. `TODO.md`, if introduced, is for documented known limitations with issue links, not another work queue. No such file is required now.
-
-If issue creation fails, inspect authentication and repository access, then retry only after resolving the cause. If still blocked, report the exact blocker and preserve the proposed issue text for handoff; do not silently substitute another tracker or claim an issue exists.
+Prefer commit closing references for implementation work. If the user explicitly
+asks to close an issue, close it directly with an accurate reason: completed for
+already-delivered work, not planned for cancelled or declined future work. Do
+not create an extra commit or replacement issue solely to permit closure.
 
 ## Commit-driven completion
 
@@ -47,16 +55,10 @@ If issue creation fails, inspect authentication and repository access, then retr
    If it remains open, check the published commit/PR closing references and target
    branch. Diagnose the missing automation rather than substituting a manual close.
 
-Keep issues open while their fixes are uncommitted, unpushed, or awaiting merge.
-Do not manually close commit-delivered work or post a "completed, not committed
-yet" closure comment. Keep commit messages brief and high-level, following
-[the commit-message rules](../../AGENTS.md#git-commit-messages). Put verification
-in model documentation, reports, the issue or PR, never in commit messages.
-Routine completion comments duplicating GitHub's automatic closing event are unnecessary.
-Manual closure is for explicit non-implementation decisions, such as a user's
-cancellation or a duplicate issue; record that reason without claiming a fix.
-Closure does not establish a deployment, physical print, or test beyond the
-verification actually performed.
+For normal commit-driven completion, keep issues open until the fixing change
+is published. Explicit user-requested closure and cancellations follow the
+manual closure rule above. Closure never establishes physical print, fit or
+safety approval beyond the evidence actually recorded.
 
 Source: [GitHub's closing-keyword and default-branch rules](https://docs.github.com/en/issues/tracking-your-work-with-issues/using-issues/linking-a-pull-request-to-an-issue).
 
