@@ -56,3 +56,7 @@ Native and STEP checks cover single-solid validity, overall heights, cross
 section envelope/material, laser-barrel clearance, pilot clearance and sleeve
 floor material. Export reports also check STL watertightness and 3MF units.
 Physical fit, slicing and print strength are not yet verified.
+
+The initial three-part model delivery is complete. Print results and remaining
+plate-overhang decisions are tracked separately in [#48](https://github.com/ShakataGaNai/b123d/issues/48).
+Sending files to the printer does not establish physical print or fit approval.
