@@ -34,6 +34,7 @@ First setup requires network access for Python, packages, and the pinned upstrea
 - **[Mounting plate](models/mounting_plate/model.py):** 60 × 40 × 5 mm rounded plate with four 4.4 mm holes. Checks dimensions, analytic volume, material at the center, and open hole centers.
 - **[Wi-Fi QR magnet plate](models/wifi_qr/README.md):** parametric 70 × 80 × 5 mm plate, 60 × 60 mm QR pattern with 5 mm top/left/right offsets and no internal quiet border, 1 mm raised code and SSID label, and four rear glue pockets for 10 × 3 mm magnets. Includes a [cleaned-up modeling prompt](models/wifi_qr/prompt.md), public sample credentials, and QR-specific checks. A 15 mm lower band separates the 4.5 mm nominal lettering from the QR. Web, PNG, and USDZ previews show black relief on a light grey body. Verify the physical print with a phone.
 - **[Station G3 open case](models/station_g3_open_case/README.md):** 70.6 × 122.2 × 22.3 mm open-top enclosure with measured mounting supports, two USB-C accesses, DC power, buttons, antenna slot and both Grove openings. Reconstructed from an attributed community case; physical fit remains unverified.
+- **[Multiboard modules](models/multiboard/):** device holders and a circuit-board display shelf, grouped with their shared snap-peg, rail, finishing and label helpers. Each model has its own subfolder; geometry and approval status are recorded in the catalog.
 
 Browse all models in the **[generated catalog](models/README.md)**.
 
@@ -148,9 +149,18 @@ models/
     model.toml
     README.md
     prompt.md
+  multiboard/
+    peg.py                     # shared family helpers
+    rail.py
+    finish.py
+    label.py
+    xiao/
+      model.py
+      model.toml
+      README.md
 ```
 
-Larger projects use a shared parent, for example `models/pi_mount/base/`, `models/pi_mount/lid/`, and `models/pi_mount/assembly/`, each with its own `model.py` and `model.toml`. The path below `models/` is the model ID; `base` in two projects does not collide in outputs. Shared helpers can live at the project level. Name helpers something other than `model.py`; that filename is reserved for cataloged entrypoints. Add a project README for assembly decisions when needed.
+Larger projects use a shared parent: `models/brio_duplo/{track,wagon,wheel,assembly}/` and `models/multiboard/<module>/`, each model with its own `model.py` and `model.toml`. The path below `models/` is the model ID, so outputs are namespaced too. For example, `uv run python scripts/build.py models/multiboard/xiao --step` writes `outputs/multiboard/xiao/xiao.{stl,3mf,step}` and previews. Shared helpers live at the project level. Name helpers something other than `model.py`; that filename is reserved for cataloged entrypoints. Add a project README for assembly decisions when needed.
 
 Reusable geometry helpers are indexed in **[models/MODULES.md](models/MODULES.md)**,
 including their imports, parameters, coordinate frames, examples and fit limits.

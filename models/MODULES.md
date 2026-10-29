@@ -119,6 +119,23 @@ build geometry or export files. They also leave an active `BuildPart` unchanged.
 Callers position the result and explicitly add/subtract it (or `insert` it in a
 builder). Helpers are not catalog entrypoints and do not need `model.toml`.
 
+The ten buildable holders/shelf live alongside these helpers in
+`models/multiboard/{cardputer_mesh,circuit_board_shelf,lilygo_tdeck,meshtracker_x1,seeed_t1000e,station_g2,unit_c6l,wismesh_pocket,wismesh_tag,xiao}/`.
+Each has `model.py`, `model.toml` and `README.md`. Shared helper imports remain
+`models.multiboard.<helper>`; model IDs and output folders use
+`multiboard/<module>`, with short artifact stems such as `xiao.3mf`.
+The former top-level holder paths are removed, not aliases. Research object
+records stay under `research/objects/`. Organization: [#44](https://github.com/ShakataGaNai/b123d/issues/44).
+
+Migration verification, 2026-10-16: all ten nested build commands passed native
+and reimported STEP checks, watertight single-body STL and millimeter 3MF round
+trips. Against pre-move source geometry, each exported STEP had 0 mm³ added and
+0 mm³ removed. All metadata files are byte-identical; all ten PNGs are
+byte-identical and PNG/HTML views were inspected. The catalog check and 100
+relative documentation links passed. Cardputer's pre-existing empty-intersection
+check was corrected separately under [#45](https://github.com/ShakataGaNai/b123d/issues/45);
+no geometry changed.
+
 ```python
 from build123d import Align, Box, Pos
 from models.multiboard.peg import peg

@@ -12,7 +12,7 @@
 - **Publisher / author:** Printables user `ShakataGaNai` for all three examples
   ([S1]–[S3]).
 - **Research date:** 2026-10-01.
-- **Consuming model:** [MeshTracker X1 Multiboard pocket](../../../models/meshtracker_x1_multiboard_holder/README.md), using the AirTag snap-peg precedent. Physical fit remains unverified.
+- **Consuming model:** [MeshTracker X1 Multiboard pocket](../../../models/multiboard/meshtracker_x1/README.md), using the AirTag snap-peg precedent. Physical fit remains unverified.
 - **Source revision identity:** Printables print ID, file ID, listing publication
   timestamps, file-creation timestamp, filename, and original-byte SHA-256 are
   the only identified revisions. The author did not provide source CAD or a

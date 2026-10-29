@@ -119,7 +119,7 @@ def build() -> Solid | Compound:
                                     projection=PEG_PROJECTION, root_overlap=JOIN_OVERLAP)
     if not isinstance(result, (Solid, Compound)):
         raise ValueError("Holder did not produce solid geometry")
-    result.label = "wismesh_pocket_multiboard_holder"
+    result.label = "wismesh_pocket"
     return result
 
 

@@ -24,7 +24,7 @@ All dimensions in mm; manufacturer's envelope and design allowances are distinct
 | Inside-floor text / deboss depth | T1000E / 0.2 |
 
 The [manufacturer specification](https://wiki.seeedstudio.com/t1000_e_intro/)
-provides the finished-device dimensions. The [dedicated research record](../../research/objects/seeed-t1000e/README.md)
+provides the finished-device dimensions. The [dedicated research record](../../../research/objects/seeed-t1000e/README.md)
 records revision limits, provenance, access evidence and allowances. The **0.4 mm
 per-side** clearance is an uncalibrated FDM choice, not a factory tolerance.
 The nominal square-cornered envelope must clear the rounded opening; the floor
@@ -50,8 +50,8 @@ Two imports of `models.multiboard.peg.peg` retain the registered snap interface.
 Their 25 mm spacing fits the flat rear wall and one same-family grid interval;
 50 mm spacing would not fit. Both lowest flats are at Z=0. Each needs a **separate
 compatible Multiboard snap**, not a direct tile Multihole. Snap revision and
-retention force remain unknown. See the [module contract](../MODULES.md#multiboard-peg-and-rail-cutout)
-and [connector provenance](../../research/objects/multiboard/measured-connectors.md).
+retention force remain unknown. See the [module contract](../../MODULES.md#multiboard-peg-and-rail-cutout)
+and [connector provenance](../../../research/objects/multiboard/measured-connectors.md).
 The peg follows the Printables AirTag precedent, whose listing declares
 Attribution–Noncommercial–ShareAlike (exact version unresolved); retain that
 attribution and applicable terms when sharing derived geometry.
@@ -65,7 +65,7 @@ mount. 3MF export is geometry only, without slicer settings.
 ## Build and checks
 
 ```sh
-uv run python scripts/build.py models/seeed_t1000e_multiboard_holder --step
+uv run python scripts/build.py models/multiboard/seeed_t1000e --step
 ```
 
 `build()` returns fresh geometry without import-time work. `check(shape)` checks
@@ -79,6 +79,6 @@ millimeter 3MF round trip on 2026-10-16; report `2026-10-16T21:44:47.986209+00:0
 PNG/HTML and contrast-enhanced exported-STL `inside-floor-inspection.png` inspected:
 upright `T1000E` viewed from the front, board at top; exact Z=2.3…2.5 mm cut.
 Boolean comparison proves only the old label was filled and the inner label cut,
-2.804993 mm³ each. Artifacts: `outputs/seeed_t1000e_multiboard_holder/`.
+2.804993 mm³ each. Artifacts: `outputs/multiboard/seeed_t1000e/`.
 Physical device/snap trials remain required. Original [#38](https://github.com/ShakataGaNai/b123d/issues/38);
 rounding/label [#43](https://github.com/ShakataGaNai/b123d/issues/43).

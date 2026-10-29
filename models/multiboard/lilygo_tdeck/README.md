@@ -1,6 +1,6 @@
 # LilyGO T-Deck Plus Multiboard cradle
 
-**User-confirmed variant: factory-enclosed T-Deck Plus**, with its internal battery/GPS. Not the bare T-Deck or T-Deck Pro. LILYGO's finished-device graphic labels 72 × 115 × 20 mm; the official Plus STEP establishes the rounded lower shape and 20.4 mm whole-shell thickness. See [manufacturer measurements/provenance](../../research/objects/lilygo-tdeck-plus/README.md), saved before geometry changes, and [issue #40](https://github.com/ShakataGaNai/b123d/issues/40).
+**User-confirmed variant: factory-enclosed T-Deck Plus**, with its internal battery/GPS. Not the bare T-Deck or T-Deck Pro. LILYGO's finished-device graphic labels 72 × 115 × 20 mm; the official Plus STEP establishes the rounded lower shape and 20.4 mm whole-shell thickness. See [manufacturer measurements/provenance](../../../research/objects/lilygo-tdeck-plus/README.md), saved before geometry changes, and [issue #40](https://github.com/ShakataGaNai/b123d/issues/40).
 
 ## Dimensions and use
 
@@ -23,17 +23,17 @@ Connect USB from below after mounting; the central opening preserves broad side 
 
 The previous flat-bottom box is replaced by a **rounded lower seat in the broad width/height plane**, not merely larger XY corners. Official STEP sections widen from 44.23 mm at 2 mm above the bottom to 71.95 mm around 16 mm. The simple R16 nominal lower envelope (R16.8 cavity with clearance) stays outside the measured shell samples; it is deliberately not a tight negative mold. Measured station gaps are approximately 0.25–2.6 mm before settling. Side ledges beside the USB opening support the lower shell, while the curved seat rises toward both ends. Slight settling/rocking and real specimen tolerances require trial fit. The XY thickness envelope is independently conservative; the 73.14 mm upper-button assembly width never enters this shallow pocket.
 
-The unchanged [registered Multiboard pegs](../MODULES.md#multiboard-peg-and-rail-cutout) are on 25 mm horizontal centers, bottom-aligned with the bed. They mate to **snap receivers**, not directly to tile multiholes. Both receivers must permit simultaneous straight insertion. No positive pull-out lock or load rating. Preserve the [connector attribution/noncommercial/share-alike limitations](../../research/objects/multiboard/measured-connectors.md).
+The unchanged [registered Multiboard pegs](../../MODULES.md#multiboard-peg-and-rail-cutout) are on 25 mm horizontal centers, bottom-aligned with the bed. They mate to **snap receivers**, not directly to tile multiholes. Both receivers must permit simultaneous straight insertion. No positive pull-out lock or load rating. Preserve the [connector attribution/noncommercial/share-alike limitations](../../../research/objects/multiboard/measured-connectors.md).
 
 ## Build and verification
 
 ```sh
-uv run python scripts/build.py models/lilygo_tdeck_multiboard_holder --step
+uv run python scripts/build.py models/multiboard/lilygo_tdeck --step
 ```
 
 `build()` returns fresh geometry without import-time construction/export or downloading manufacturer files. `check(shape)` checks one valid solid, envelope, continuous rounded-shell insertion sweep, independent manufacturer section witnesses, rising rounded seat/support material, flat ledges, USB/cable passage, analytical upper-wall section, R0.6 edge/mouth boundaries, and both peg sections/placements. The former square-prism insertion and unfilleted whole-volume formula no longer describe this geometry. CAD tolerances are not print allowances.
 
-**unverified-fit; print_tested=false.** Current rounded-seat revision passed native/STEP design checks, one-body watertight STL and millimeter 3MF round trip on 2026-10-16. Four-view PNG inspected, including rising curved seat and USB opening. Report timestamp `2026-10-16T21:38:10.910676+00:00`, under `outputs/lilygo_tdeck_multiboard_holder/`. This supersedes the earlier square-bottom build; physical fit remains untested.
+**unverified-fit; print_tested=false.** Current rounded-seat revision passed native/STEP design checks, one-body watertight STL and millimeter 3MF round trip on 2026-10-16. Four-view PNG inspected, including rising curved seat and USB opening. Report timestamp `2026-10-16T21:38:10.910676+00:00`, under `outputs/multiboard/lilygo_tdeck/`. This supersedes the earlier square-bottom build; physical fit remains untested.
 
 No slicing or physical fit/load test was performed. Print floor-down with calibrated FDM settings; inspect floor aperture, rounded lower seat and peg roots in the slicer. Trial-fit the actual Plus case and both snaps, checking seating, rocking, key pressure, USB access, cooling and removability. No transport retention or drop protection.
 

@@ -139,7 +139,7 @@ def build() -> Solid | Compound:
     )
     if not isinstance(result, (Solid, Compound)):
         raise ValueError("Cradle fusion did not produce solid geometry")
-    result.label = "xiao_multiboard_holder"
+    result.label = "xiao"
     return result
 
 

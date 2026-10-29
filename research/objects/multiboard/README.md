@@ -142,7 +142,7 @@ The user closed [b123d #10](https://github.com/ShakataGaNai/b123d/issues/10): no
 
 ## Model linkage and maintenance
 
-The [MeshTracker X1 holder](../../../models/meshtracker_x1_multiboard_holder/README.md) consumes the measured snap-peg precedent through the [registered reusable module](../../../models/MODULES.md#multiboard-peg-and-rail-cutout); physical fit remains unverified. Consuming models should link the relevant Multiboard research and their object-specific record in `model.toml`. Revisit the chosen interface when upstream geometry, board variant, hardware revision or print process changes; update affected geometry and checks together.
+The [MeshTracker X1 holder](../../../models/multiboard/meshtracker_x1/README.md) consumes the measured snap-peg precedent through the [registered reusable module](../../../models/MODULES.md#multiboard-peg-and-rail-cutout); physical fit remains unverified. Consuming models should link the relevant Multiboard research and their object-specific record in `model.toml`. Revisit the chosen interface when upstream geometry, board variant, hardware revision or print process changes; update affected geometry and checks together.
 
 | Date | Change | Verification |
 |---|---|---|

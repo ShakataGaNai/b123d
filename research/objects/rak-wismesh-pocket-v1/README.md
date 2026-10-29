@@ -1,6 +1,6 @@
 # RAKwireless WisMesh Pocket: original V1
 
-Research date: 2026-10-16. Work: [#42](https://github.com/ShakataGaNai/b123d/issues/42). Consumer: [WisMesh Pocket V1 Multiboard cradle](../../../models/wismesh_pocket_multiboard_holder/README.md).
+Research date: 2026-10-16. Work: [#42](https://github.com/ShakataGaNai/b123d/issues/42). Consumer: [WisMesh Pocket V1 Multiboard cradle](../../../models/multiboard/wismesh_pocket/README.md).
 
 ## Identity and evidence tier
 

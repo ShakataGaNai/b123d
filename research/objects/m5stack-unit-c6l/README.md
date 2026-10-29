@@ -6,7 +6,7 @@ Research date: 2026-10-16. Manufacturer: M5Stack. Product: Unit C6L, SKU U202,
 868–923 MHz enclosed LoRa unit. The user's hardware revision is unknown; the
 manufacturer's mechanical drawing has no visible revision/date identifier.
 Electrical schematic B0.4.1 is linked on the product page but is not proof of the
-specimen's mechanical revision. Consumer: `models/unit_c6l_multiboard_holder/`.
+specimen's mechanical revision. Consumer: `models/multiboard/unit_c6l/`.
 
 Readiness: **approximate with listed assumptions**. Authoritative external
 cross-section dimensions support a simple gravity pocket; no exact shell contour

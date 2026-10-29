@@ -100,7 +100,7 @@ def build() -> Solid | Compound:
         )
     if not isinstance(result, (Solid, Compound)):
         raise ValueError("Holder fusion did not produce solid geometry")
-    result.label = "meshtracker_x1_multiboard_holder"
+    result.label = "meshtracker_x1"
     return result
 
 

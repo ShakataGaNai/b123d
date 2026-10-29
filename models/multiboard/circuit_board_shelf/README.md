@@ -26,15 +26,15 @@ minimum stable thickness**. No gussets, board clamp, electrical insulation
 certification or powered-board cooling provision is included. Tall boards may
 tip; do not mount heavy equipment or rely on this as fall protection.
 
-The [shared finish standard](../MODULES.md#multiboard-holder-finishing) rounds
+The [shared finish standard](../../MODULES.md#multiboard-holder-finishing) rounds
 outside plan corners and all exposed lip/deck perimeter edges. Concave
 deck-to-wall support joints and snap mating profiles stay unchanged.
 The hidden peg overlap is 0.8 mm to bridge the rounded rear underside.
 
 Attachment imports `models.multiboard.peg.peg` unchanged: fit two compatible
 **Multiboard snaps**, one 25 mm grid interval apart, not bare tile Multiholes.
-See [module contract](../MODULES.md#multiboard-peg-and-rail-cutout) and
-[connector evidence](../../research/objects/multiboard/measured-connectors.md).
+See [module contract](../../MODULES.md#multiboard-peg-and-rail-cutout) and
+[connector evidence](../../../research/objects/multiboard/measured-connectors.md).
 Peg provenance is ShakataGaNai's Printables AirTag holder; retain its declared
 Attribution–Noncommercial–ShareAlike terms (exact version unresolved) when
 sharing derived geometry.
@@ -42,7 +42,7 @@ sharing derived geometry.
 ## Build and printing
 
 ```sh
-uv run python scripts/build.py models/circuit_board_multiboard_shelf --step
+uv run python scripts/build.py models/multiboard/circuit_board_shelf --step
 ```
 
 Print upright as exported, deck bottom on XY. Nonconductive PETG, 0.4 mm nozzle
@@ -52,7 +52,7 @@ remain unverified; 3MF contains geometry only, not printer settings.
 
 `check()` measures the usable open deck, retained deck/lip/back-wall cores,
 front lip height, both octagonal peg sections/locations and actual R3/R0.6 boundaries.
-Artifacts are under `outputs/circuit_board_multiboard_shelf/`: same-named STL,
+Artifacts are under `outputs/multiboard/circuit_board_shelf/`: same-named STL,
 3MF and optional STEP plus `preview.png`, `preview.html` and `report.json`.
 STL must be imported as mm; 3MF declares mm.
 

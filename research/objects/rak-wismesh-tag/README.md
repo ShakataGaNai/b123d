@@ -1,6 +1,6 @@
 # RAKwireless WisMesh Tag
 
-Research date: 2026-10-16. Consumed by [the Multiboard holder](../../../models/wismesh_tag_multiboard_holder/README.md), tracked in [#39](https://github.com/ShakataGaNai/b123d/issues/39). Record saved before geometry.
+Research date: 2026-10-16. Consumed by [the Multiboard holder](../../../models/multiboard/wismesh_tag/README.md), tracked in [#39](https://github.com/ShakataGaNai/b123d/issues/39). Record saved before geometry.
 
 ## Identity and sources
 

@@ -98,7 +98,7 @@ def build() -> Solid | Compound:
         )
     if not isinstance(result, (Solid, Compound)):
         raise ValueError("Cradle did not produce solid geometry")
-    result.label = "station_g2_multiboard_holder"
+    result.label = "station_g2"
     return result
 
 

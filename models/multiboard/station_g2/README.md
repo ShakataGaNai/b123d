@@ -1,6 +1,6 @@
 # Station G2 Multiboard pocket
 
-Rounded top-entry gravity pocket for **BQ Voyage Station G2's original stacked-PCB enclosure**, not G3 or an aftermarket case. The user reports the previous boxy split-front cradle does not work and corrects the **body thickness to 12 mm, excluding screws**. This replacement follows that evidence. [Research and uncertainties](../../research/objects/bq-voyage-station-g2/README.md); [issue #41](https://github.com/ShakataGaNai/b123d/issues/41), shared finish [#43](https://github.com/ShakataGaNai/b123d/issues/43).
+Rounded top-entry gravity pocket for **BQ Voyage Station G2's original stacked-PCB enclosure**, not G3 or an aftermarket case. The user reports the previous boxy split-front cradle does not work and corrects the **body thickness to 12 mm, excluding screws**. This replacement follows that evidence. [Research and uncertainties](../../../research/objects/bq-voyage-station-g2/README.md); [issue #41](https://github.com/ShakataGaNai/b123d/issues/41), shared finish [#43](https://github.com/ShakataGaNai/b123d/issues/43).
 
 ## Dimensions and insertion
 
@@ -27,7 +27,7 @@ The floor is deliberately closed: USB center/plug dimensions have not been measu
 
 ## Attachment and printing
 
-Uses the unchanged [`models.multiboard.peg.peg`](../MODULES.md#multiboard-peg-and-rail-cutout) interface on 25 mm horizontal centers. These insert into compatible **Multiboard snaps**, not directly into tile Multiholes. Pegs are bottom-aligned at Z=0. Their 0.8 mm root overlap bridges the rounded underside and stays inside the rear wall, outside the screw corridor. The reused interface's [source attribution and unresolved CC BY-NC-SA version](../../research/objects/multiboard/measured-connectors.md) apply when sharing source-derived geometry.
+Uses the unchanged [`models.multiboard.peg.peg`](../../MODULES.md#multiboard-peg-and-rail-cutout) interface on 25 mm horizontal centers. These insert into compatible **Multiboard snaps**, not directly into tile Multiholes. Pegs are bottom-aligned at Z=0. Their 0.8 mm root overlap bridges the rounded underside and stays inside the rear wall, outside the screw corridor. The reused interface's [source attribution and unresolved CC BY-NC-SA version](../../../research/objects/multiboard/measured-connectors.md) apply when sharing source-derived geometry.
 
 Print floor-down on XY. Inspect horizontal peg overhangs, support strategy and lower-edge fit in the slicer. Material and thermal suitability require evaluation for the real unit's duty cycle; do not support it by antenna leverage. Status remains **unverified-fit**, `print_tested = false`; no physical fit, load, thermal or vibration qualification is claimed.
 
@@ -38,10 +38,10 @@ Print floor-down on XY. Inspect horizontal peg overhangs, support strategy and l
 Build command:
 
 ```sh
-uv run python scripts/build.py models/station_g2_multiboard_holder --step
+uv run python scripts/build.py models/multiboard/station_g2 --step
 ```
 
-The corrected rounded-slot revision passed native/STEP checks, one-body watertight STL and millimeter 3MF round trip on 2026-10-16. Four-view PNG inspected: narrow continuous slot, closed floor and two peg roots. Report timestamp `2026-10-16T21:33:29.811800+00:00`, under `outputs/station_g2_multiboard_holder/`. Physical fit remains unverified; numerical tolerances are not print compensation.
+The corrected rounded-slot revision passed native/STEP checks, one-body watertight STL and millimeter 3MF round trip on 2026-10-16. Four-view PNG inspected: narrow continuous slot, closed floor and two peg roots. Report timestamp `2026-10-16T21:33:29.811800+00:00`, under `outputs/multiboard/station_g2/`. Physical fit remains unverified; numerical tolerances are not print compensation.
 
 ### Superseded validation history
 

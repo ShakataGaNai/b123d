@@ -24,7 +24,7 @@ All dimensions are mm.
 establishes the 24 × 8 cross-section, 56 shell height and 62 height including
 antenna connector stubs, excluding attached antennas. The user's approximate
 23 mm width is superseded by 24 mm. Full evidence, revision limitations and
-allowances are in the [research record](../../research/objects/m5stack-unit-c6l/README.md).
+allowances are in the [research record](../../../research/objects/m5stack-unit-c6l/README.md).
 
 The 0.4 per-side clearance is an uncalibrated FDM allowance, not a verified
 printer tolerance. A conservative square-cornered 24 × 8 device envelope clears
@@ -44,8 +44,8 @@ The rear feature imports `models.multiboard.peg.peg` unchanged: a 13.5 across-fl
 octagon, projecting 6.5 from the rear wall, with its lowest flat at Z=0. It inserts
 into a **separate compatible Multiboard snap**, not directly into a tile's large
 Multihole. The snap revision and retention force are unspecified. See the
-[module contract](../MODULES.md#multiboard-peg-and-rail-cutout) and
-[connector provenance](../../research/objects/multiboard/measured-connectors.md).
+[module contract](../../MODULES.md#multiboard-peg-and-rail-cutout) and
+[connector provenance](../../../research/objects/multiboard/measured-connectors.md).
 The registered peg derives from the attributed Printables AirTag precedent;
 its listing declares Attribution–Noncommercial–ShareAlike, exact version
 unresolved. Retain that attribution and applicable terms when sharing derived
@@ -61,7 +61,7 @@ supports. No slicer settings are embedded in the 3MF.
 ## Build and verification
 
 ```sh
-uv run python scripts/build.py models/unit_c6l_multiboard_holder --step
+uv run python scripts/build.py models/multiboard/unit_c6l --step
 ```
 
 On 2026-10-16 this command passed native and saved/reimported STEP design checks:
@@ -73,11 +73,11 @@ millimeter-unit round-trip passed. PNG views and interactive HTML front/rear
 views were inspected. The user subsequently confirmed a successful physical print
 and good validation on 2026-10-16; cable-fit and load limits remain unspecified.
 
-Artifacts under `outputs/unit_c6l_multiboard_holder/`:
+Artifacts under `outputs/multiboard/unit_c6l/`:
 
-- `unit_c6l_multiboard_holder.stl` — mesh; import as mm.
-- `unit_c6l_multiboard_holder.3mf` — geometry-only, explicit mm units.
-- `unit_c6l_multiboard_holder.step` — exact CAD exchange.
+- `unit_c6l.stl` — mesh; import as mm.
+- `unit_c6l.3mf` — geometry-only, explicit mm units.
+- `unit_c6l.step` — exact CAD exchange.
 - `preview.png`, `preview.html` — exported-STL inspection views.
 - `report.json` — timestamp and native, STEP, mesh and 3MF verification.
 

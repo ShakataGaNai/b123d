@@ -25,7 +25,7 @@ All dimensions in mm; manufacturer's envelope and design allowances are distinct
 
 The [manufacturer guide's enclosure drawing](https://docs.rakwireless.com/product-categories/meshtastic/wismesh-tag/quickstart/#dimensions)
 and current store dimension image both state 92 × 59 × 7.5. The
-[dedicated research record](../../research/objects/rak-wismesh-tag/README.md)
+[dedicated research record](../../../research/objects/rak-wismesh-tag/README.md)
 records source images, revision limits and unknowns. **0.4 mm per-side** clearance
 is an uncalibrated FDM choice, not a manufacturer tolerance. Rubber-shell friction
 and production variation need a physical trial. The square nominal device envelope
@@ -52,8 +52,8 @@ Two imports of `models.multiboard.peg.peg` retain the registered interface. Thei
 25 mm spacing fits the flat rear wall and one same-family grid interval; 50 mm
 would not fit. Both lowest flats are Z=0. Each needs a **separate compatible
 Multiboard snap**, not direct insertion into a tile Multihole. Snap variant and
-retention force are unknown. See the [module contract](../MODULES.md#multiboard-peg-and-rail-cutout)
-and [connector provenance](../../research/objects/multiboard/measured-connectors.md).
+retention force are unknown. See the [module contract](../../MODULES.md#multiboard-peg-and-rail-cutout)
+and [connector provenance](../../../research/objects/multiboard/measured-connectors.md).
 The peg follows the Printables AirTag precedent, whose listing declares
 Attribution–Noncommercial–ShareAlike (exact version unresolved); retain attribution
 and applicable terms when sharing derived geometry.
@@ -67,7 +67,7 @@ anti-ejection mount. 3MF export has geometry only, without slicer settings.
 ## Build and checks
 
 ```sh
-uv run python scripts/build.py models/wismesh_tag_multiboard_holder --step
+uv run python scripts/build.py models/multiboard/wismesh_tag --step
 ```
 
 `build()` returns fresh geometry without import-time work. `check(shape)` checks
@@ -81,6 +81,6 @@ millimeter 3MF round trip on 2026-10-16; report `2026-10-16T21:44:54.831603+00:0
 PNG/HTML and contrast-enhanced exported-STL `inside-floor-inspection.png` inspected:
 upright `Wis Tag` viewed from the front, board at top; exact Z=2.3…2.5 mm cut.
 Boolean comparison proves only the old label was filled and the inner label cut,
-2.707712 mm³ each. Artifacts: `outputs/wismesh_tag_multiboard_holder/`.
+2.707712 mm³ each. Artifacts: `outputs/multiboard/wismesh_tag/`.
 Physical device/snap trials remain required. Original [#39](https://github.com/ShakataGaNai/b123d/issues/39);
 rounding/label [#43](https://github.com/ShakataGaNai/b123d/issues/43).

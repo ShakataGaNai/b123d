@@ -1,6 +1,6 @@
 # Seeed SenseCAP Card Tracker T1000-E
 
-Research date: 2026-10-16. Consumed by [the Multiboard holder](../../../models/seeed_t1000e_multiboard_holder/README.md), tracked in [#38](https://github.com/ShakataGaNai/b123d/issues/38). Record saved before geometry.
+Research date: 2026-10-16. Consumed by [the Multiboard holder](../../../models/multiboard/seeed_t1000e/README.md), tracked in [#38](https://github.com/ShakataGaNai/b123d/issues/38). Record saved before geometry.
 
 ## Identity and sources
 

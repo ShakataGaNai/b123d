@@ -1,6 +1,6 @@
 # LILYGO T-Deck Plus: factory-enclosed device
 
-Research date: 2026-10-16. Work: [#40](https://github.com/ShakataGaNai/b123d/issues/40). Consumer: [T-Deck Plus Multiboard cradle](../../../models/lilygo_tdeck_multiboard_holder/README.md).
+Research date: 2026-10-16. Work: [#40](https://github.com/ShakataGaNai/b123d/issues/40). Consumer: [T-Deck Plus Multiboard cradle](../../../models/multiboard/lilygo_tdeck/README.md).
 
 ## Identity and readiness
 

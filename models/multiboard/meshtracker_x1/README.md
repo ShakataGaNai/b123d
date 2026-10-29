@@ -27,18 +27,18 @@ The inside-floor label **X1** is debossed exactly 0.2 mm below the Z=2.5 seat, l
 
 ## Measurement basis and fit
 
-Following the requested **measure-first** approach, the [X1 research record](../../research/objects/seeed-meshtracker-x1/README.md) measures the shell STL instead of reconstructing its exact contours. Its lower 22.5 mm spans approximately **57 × 8 mm**. Repeated lower sections also establish the angled sides: a **5 mm horizontal run over 10 mm vertical rise**, approximately **26.565° from vertical**, reaching a nominal 47 mm-wide flat base. A square-bottom cavity would leave those corners unsupported; the revised cutout retains matching sloped support surfaces.
+Following the requested **measure-first** approach, the [X1 research record](../../../research/objects/seeed-meshtracker-x1/README.md) measures the shell STL instead of reconstructing its exact contours. Its lower 22.5 mm spans approximately **57 × 8 mm**. Repeated lower sections also establish the angled sides: a **5 mm horizontal run over 10 mm vertical rise**, approximately **26.565° from vertical**, reaching a nominal 47 mm-wide flat base. A square-bottom cavity would leave those corners unsupported; the revised cutout retains matching sloped support surfaces.
 
 The top slot remains 57.8 × 8.8 mm. Its lower profile follows the measured slopes, offset outward by **0.4 mm normal to the ramps**; the straight front/back and upper side allowances are 0.4 mm per side. The flat floor is at Z=2.5, with pocket half-width 23.9472 mm there; ramps meet the full-width opening at Z≈12.4056. Straight lines envelope the source's rounded slope endpoints rather than exactly reconstructing them. Checks against all measured lower-band vertices and entry-plane triangle intersections give approximately **0.4000 mm normal ramp clearance** and **0.3997 mm minimum front/back clearance**. This is an uncalibrated design allowance, not a physical fit claim: the reference mesh is nonwatertight and was not used as a volume.
 
-The rear mount imports **`models.multiboard.peg.peg`** twice, following [the module registry](../MODULES.md#multiboard-peg-and-rail-cutout). Each unchanged 13.5 mm across-flats / 6.5 mm projecting profile is centered at Z=6.75, lowest flat Z=0. Two compatible snaps on 25 mm centers are required; these are not direct tile-Multihole connectors. The [existing-holder evidence](../../research/objects/multiboard/existing-holder-examples.md) records the original interface provenance. Snap revision and quantified retention remain unspecified.
+The rear mount imports **`models.multiboard.peg.peg`** twice, following [the module registry](../../MODULES.md#multiboard-peg-and-rail-cutout). Each unchanged 13.5 mm across-flats / 6.5 mm projecting profile is centered at Z=6.75, lowest flat Z=0. Two compatible snaps on 25 mm centers are required; these are not direct tile-Multihole connectors. The [existing-holder evidence](../../../research/objects/multiboard/existing-holder-examples.md) records the original interface provenance. Snap revision and quantified retention remain unspecified.
 
 Installed frame: X is width, +Y is the rear/board side, and +Z is up. The reference device is placed bottom-first using `(X, Y, Z) → (X, −Y + 2.5, −Z + 47.500031)` mm from its native STL frame. It rests at the 2.5 mm floor and extends above the pocket. The lower USB-C end is covered: **remove the tracker for charging**. This is an open-top gravity pocket, not an anti-ejection latch or protective case.
 
 ## Build and print
 
 ```sh
-uv run python scripts/build.py models/meshtracker_x1_multiboard_holder
+uv run python scripts/build.py models/multiboard/meshtracker_x1
 ```
 
 This generates STL + geometry-only 3MF with millimeter units, previews, and a report. Add `--step` for CAD exchange and STEP round-trip checks. A successful default build removes an older same-stem STEP.
@@ -60,11 +60,11 @@ with contrast enhanced, board side at top. Text is shallow in ordinary shading.
 Boolean comparison against the preceding STEP proves only the old label was filled
 and the new inner label cut: 0.835908 mm³ each, with no other geometry changed.
 
-Build output paths under `outputs/meshtracker_x1_multiboard_holder/`:
+Build output paths under `outputs/multiboard/meshtracker_x1/`:
 
-- `meshtracker_x1_multiboard_holder.step` — optional CAD exchange geometry, only with `--step`.
-- `meshtracker_x1_multiboard_holder.stl` — printable mesh; import as millimeters.
-- `meshtracker_x1_multiboard_holder.3mf` — geometry-only mesh with millimeter units, without slicer settings or material assignments.
+- `meshtracker_x1.step` — optional CAD exchange geometry, only with `--step`.
+- `meshtracker_x1.stl` — printable mesh; import as millimeters.
+- `meshtracker_x1.3mf` — geometry-only mesh with millimeter units, without slicer settings or material assignments.
 - `preview.png`, `preview.html` — exported-mesh visualizations.
 - `report.json` — build timestamp, native/mesh results and conditional STEP results.
 

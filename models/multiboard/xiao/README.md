@@ -32,7 +32,7 @@ All dimensions in **mm**. XY is the print bed; +Z is up; +Y faces the Multiboard
 | Rear octagonal peg across flats / projection | 13.5 / 6.5 |
 | Peg bottom above bed | 0 |
 
-The [hardware record](../../research/objects/seeed-xiao-esp32s3-wio-sx1262/README.md) cites the manufacturer footprint and distinguishes nominal facts from fit allowances. The slots assume ordinary **0.64 mm square pins**, **6 mm exposed length**, and **2.54 mm-wide × 2.5 mm-high header plastic**. They give 0.38 mm nominal clearance per pin side, 0.56 mm clearance at each array end, 2 mm clearance beneath 6 mm pins, and 0.57 mm of support beneath each side of the plastic. Pins up to 7.5 mm long retain 0.5 mm bottom clearance. These are uncalibrated design allowances, not measured printing accuracy.
+The [hardware record](../../../research/objects/seeed-xiao-esp32s3-wio-sx1262/README.md) cites the manufacturer footprint and distinguishes nominal facts from fit allowances. The slots assume ordinary **0.64 mm square pins**, **6 mm exposed length**, and **2.54 mm-wide × 2.5 mm-high header plastic**. They give 0.38 mm nominal clearance per pin side, 0.56 mm clearance at each array end, 2 mm clearance beneath 6 mm pins, and 0.57 mm of support beneath each side of the plastic. Pins up to 7.5 mm long retain 0.5 mm bottom clearance. These are uncalibrated design allowances, not measured printing accuracy.
 
 The center is open through the bottom and front; its rear edge at Y=11 is 0.5 mm behind the nominal 21 mm PCB's rear edge. Header slots and the front edge at Y=−13 remain unchanged. The back face stays at Y=16.4, with the antenna slot centered at X=0, Y=13.7 and its floor now at Z=1.5; the peg is unchanged. There are no holder features above the support plane, leaving the Wio daughterboard, buttons and antenna connections above the holder. Other classic 2×7 XIAO boards are intended to fit, but alternate headers, solder blobs, underside heatsinks, GNSS, batteries and accessories require their own checks. The Wi-Fi antenna and battery are supported separately; antenna length and RF performance remain unverified.
 
@@ -40,12 +40,12 @@ The center is open through the bottom and front; its rear edge at Y=11 is 0.5 mm
 
 The model imports `models.multiboard.peg.peg` without modifying the shared helper. It is the same nominal 13.5 mm across-flats × 6.5 mm projection used by the approved prior XIAO geometry. It inserts into a **Multiboard snap**, not directly into a tile Multihole. Snap revision and quantified retention/strength remain unspecified.
 
-Provenance: [ShakataGaNai's AirTag holder](https://www.printables.com/model/1407536-airtag-holder-for-multiboard), documented in the [connector research](../../research/objects/multiboard/measured-connectors.md). Its listing declares Attribution–Noncommercial–ShareAlike with the exact version unresolved. Retain that attribution and applicable terms when sharing source-derived geometry.
+Provenance: [ShakataGaNai's AirTag holder](https://www.printables.com/model/1407536-airtag-holder-for-multiboard), documented in the [connector research](../../../research/objects/multiboard/measured-connectors.md). Its listing declares Attribution–Noncommercial–ShareAlike with the exact version unresolved. Retain that attribution and applicable terms when sharing source-derived geometry.
 
 ## Build and printing
 
 ```sh
-uv run python scripts/build.py models/xiao_multiboard_holder --step
+uv run python scripts/build.py models/multiboard/xiao --step
 ```
 
 `model.py` owns the geometry and `check(shape)`; `model.toml` owns catalog metadata. Imports do not build or export. The standard build works without downloaded hardware files. Omit `--step` for STL/3MF only; the exporter then removes an older same-stem STEP.
@@ -63,11 +63,11 @@ On 2026-10-16, `scripts/build.py ... --step` passed using Python 3.14.8 / build1
 - Saved millimeter 3MF: round trip passed. Geometry only, without slicer settings/material assignments.
 - PNG isometric/top/bottom/front views and interactive HTML inspected, including both rounded front tips, rear joins and the transverse antenna slot.
 
-Artifacts under `outputs/xiao_multiboard_holder/`:
+Artifacts under `outputs/multiboard/xiao/`:
 
-- `xiao_multiboard_holder.stl` — mesh; import as millimeters.
-- `xiao_multiboard_holder.3mf` — millimeter geometry package.
-- `xiao_multiboard_holder.step` — exact CAD exchange.
+- `xiao.stl` — mesh; import as millimeters.
+- `xiao.3mf` — millimeter geometry package.
+- `xiao.step` — exact CAD exchange.
 - `preview.png`, `preview.html`, `report.json` — exported-mesh views and fresh build evidence.
 
 Prior geometry was printed and validated good by the user on 2026-10-16; the deeper-slot revision still requires a physical print. Pin/header variation and cable-load limits remain unspecified. Approval: [#35](https://github.com/ShakataGaNai/b123d/issues/35); slot revision: [#37](https://github.com/ShakataGaNai/b123d/issues/37).

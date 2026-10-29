@@ -59,7 +59,7 @@ def build() -> Solid | Compound:
     result = body - pocket + mounted_peg
     if not isinstance(result, (Solid, Compound)):
         raise ValueError("Holder did not produce solid geometry")
-    result.label = "unit_c6l_multiboard_holder"
+    result.label = "unit_c6l"
     return result
 
 

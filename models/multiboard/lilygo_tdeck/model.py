@@ -121,7 +121,7 @@ def build() -> Solid | Compound:
                                     projection=PEG_PROJECTION, root_overlap=JOIN_OVERLAP)
     if not isinstance(result, (Solid, Compound)):
         raise ValueError("Holder did not produce solid geometry")
-    result.label = "lilygo_tdeck_multiboard_holder"
+    result.label = "lilygo_tdeck"
     return result
 
 

@@ -68,7 +68,7 @@ def build() -> Solid | Compound:
         rear = Plane(origin=(x, DEPTH + THICKNESS, PEG_ACROSS_FLATS / 2),
                      x_dir=(1, 0, 0), z_dir=(0, 1, 0))
         body = body + rear * peg(root_overlap=JOIN_OVERLAP)
-    body.label = "circuit_board_multiboard_shelf"
+    body.label = "circuit_board_shelf"
     return body
 
 

@@ -1,6 +1,6 @@
 # BQ Voyage Station G2 — Multiboard cradle research
 
-Recorded 2026-10-16, before holder geometry. Consumer: [`station_g2_multiboard_holder`](../../../models/station_g2_multiboard_holder/README.md). Work: [#41](https://github.com/ShakataGaNai/b123d/issues/41).
+Recorded 2026-10-16, before holder geometry. Consumer: [`multiboard/station_g2`](../../../models/multiboard/station_g2/README.md). Work: [#41](https://github.com/ShakataGaNai/b123d/issues/41).
 
 ## Hardware and primary sources
 

@@ -1,6 +1,6 @@
 # Seeed XIAO ESP32S3 + Wio-SX1262 header interface
 
-Research date: 2026-10-16. Consumer: `models/xiao_multiboard_holder/`.
+Research date: 2026-10-16. Consumer: `models/multiboard/xiao/`.
 Primary target: Seeed SKU **102010611**, XIAO ESP32S3 + Wio-SX1262 Meshtastic kit, with two downward-facing seven-pin male headers. The user's actual PCB revision and header supplier are unknown. Scope is a small gravity-supported header cradle with an upright flat LoRa antenna slot, not an enclosure, electrical socket, battery holder or anti-ejection clip.
 
 Readiness: **prior geometry printed and user-approved; deeper-slot revision unprinted**. Manufacturer header coordinates are established; header stock dimensions remain assumptions. User confirmation on 2026-10-16 applies to the prior 8 mm-depth antenna slot, not the subsequent 12 mm-depth revision.
@@ -60,9 +60,9 @@ There are no board mounting screws in this design. Drill diameters above describ
 
 The model's `check(shape)` must verify: one valid solid; envelope; both full-depth continuous pin slots; positive walls and closed slot floors; two complete 7-pin insertion envelopes; supporting ledges under the assumed plastic strips; an open underside/USB-side center; nominal PCB clearance; antenna slot dimensions, closed floor, walls and insertion envelope; front/rear spine webs; and the peg's octagonal cross-section, projection and bottom alignment. Export checks inspect saved STL and 3MF plus previews; STEP additionally exercises the same checks after round trip.
 
-Initial cradle verification, before the antenna revision, 2026-10-16: native/STEP checks, watertight single-body STL (604 triangles), millimeter 3MF round trip and PNG/HTML inspection passed at 22 × 32.5 × 13.5 mm including the peg. This historical result is not evidence for the enlarged antenna-slot geometry; current results belong in `outputs/xiao_multiboard_holder/report.json`.
+Initial cradle verification, before the antenna revision, 2026-10-16: native/STEP checks, watertight single-body STL (604 triangles), millimeter 3MF round trip and PNG/HTML inspection passed at 22 × 32.5 × 13.5 mm including the peg. This historical result is not evidence for the enlarged antenna-slot geometry; current results belong in `outputs/multiboard/xiao/report.json`.
 
-Antenna revision verification, 2026-10-16: `uv run python scripts/build.py models/xiao_multiboard_holder --step` passed all native and saved/reimported STEP checks, including the new antenna entry, floor, walls, insertion sweep and both rear-spine webs. Report timestamp `2026-10-16T18:42:15.729349+00:00`; bounds 22 × 35.9 × 13.5 mm; watertight, consistently oriented single-body STL (620 triangles); millimeter 3MF round trip passed. PNG and interactive HTML previews inspected. No physical antenna fit or RF test is claimed.
+Antenna revision verification, 2026-10-16: `uv run python scripts/build.py models/multiboard/xiao --step` passed all native and saved/reimported STEP checks, including the new antenna entry, floor, walls, insertion sweep and both rear-spine webs. Report timestamp `2026-10-16T18:42:15.729349+00:00`; bounds 22 × 35.9 × 13.5 mm; watertight, consistently oriented single-body STL (620 triangles); millimeter 3MF round trip passed. PNG and interactive HTML previews inspected. No physical antenna fit or RF test is claimed.
 
 Inner-corner revision verification, 2026-10-16: added R1 fillets at both front inner tips and rear inner joins. Native and reimported STEP checks passed, including probes on both sides of each quarter-circle at 15°, 45° and 75° and at three heights. Full slot clearances and support ledges still passed. Report timestamp `2026-10-16T18:46:55.039679+00:00`; unchanged envelope/volume; watertight single-body STL (1,132 triangles); millimeter 3MF round trip passed. PNG and HTML previews inspected. This is a geometry revision, not renewed physical-fit evidence.
 

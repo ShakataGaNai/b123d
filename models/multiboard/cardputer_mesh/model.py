@@ -91,7 +91,7 @@ def build() -> Solid | Compound:
                      x_dir=(1, 0, 0), z_dir=(0, 1, 0))
         body += rear * peg(across_flats=PEG_AF, projection=PEG_PROJECTION,
                            root_overlap=ROOT_OVERLAP)
-    body.label = "cardputer_mesh_multiboard_holder"
+    body.label = "cardputer_mesh"
     return body
 
 
@@ -177,5 +177,6 @@ def check(shape) -> None:
                      ASSUMED_ASSEMBLY_HEIGHT)
     if keepout.distance_to(backplane) < MIN_REAR_CLEARANCE - LENGTH_TOL:
         raise ValueError("Nominal upright cap envelope too close to backplane")
-    if (shape & keepout).volume > VOLUME_TOL:
+    overlap = shape & keepout
+    if overlap is not None and overlap.volume > VOLUME_TOL:
         raise ValueError("Holder enters upper rear keep-out")
